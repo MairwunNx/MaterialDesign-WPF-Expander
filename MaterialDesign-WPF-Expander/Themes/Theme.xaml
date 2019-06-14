@@ -1,0 +1,8 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary>
+            <ResourceDictionary x:Key="Light" Source="/MaterialDesign-WPF-Expander;component/Themes/LightDictionary.xaml" />
+            <ResourceDictionary x:Key="Dark" Source="/MaterialDesign-WPF-Expander;component/Themes/DarkDictionary.xaml" />
+        </ResourceDictionary>
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>

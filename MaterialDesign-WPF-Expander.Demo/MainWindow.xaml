@@ -25,14 +25,13 @@
             Text="Here's what you get with every domain"
             TextWrapping="WrapWithOverflow" />
 
-        <!-- <mdex:Expander
+        <mdex:Expander
             Grid.Row="1"
-            Background="#FF81D6D6"
-            ExpanderGroup="BaseExpander"
-            MouseLeftButtonUp="UIElement_OnMouseLeftButtonUp" />-->
+            ExpanderIconIsVisible="false"
+            MouseLeftButtonUp="UIElement_OnMouseLeftButtonUp" />
 
-        <Grid Grid.Row="1">
+        <!--  <Grid Grid.Row="1" Background="{DynamicResource Ex-Background-Brush}">
             <Image Source="{StaticResource PlusIcon}" />
-        </Grid>
+        </Grid>-->
     </Grid>
 </Window>
