@@ -4,14 +4,13 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:MaterialDesign_WPF_Expander"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:system="clr-namespace:System;assembly=mscorlib"
     mc:Ignorable="d">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/MaterialDesign-WPF-Expander;component/Resources/Icons/Icons.xaml" />
-        <ResourceDictionary Source="/MaterialDesign-WPF-Expander;component/Themes/Theme.xaml" />
         <ResourceDictionary Source="/MaterialDesign-WPF-Expander;component/Themes/LightDictionary.xaml" />
         <ResourceDictionary Source="/MaterialDesign-WPF-Expander;component/Themes/DarkDictionary.xaml" />
     </ResourceDictionary.MergedDictionaries>
+    <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
     <Style TargetType="{x:Type local:Expander}">
         <Setter Property="Template">
             <Setter.Value>
@@ -20,11 +19,11 @@
                         Background="{TemplateBinding Background}"
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}">
+                        <Border.DataContext>
+                            <local:Expander />
+                        </Border.DataContext>
                         <Grid Background="{DynamicResource Ex-Background-Brush}">
-                            <Grid.DataContext>
-                                <Binding Source="{Binding Source=Expander}" />
-                            </Grid.DataContext>
-                            <Image Source="{DynamicResource PlusIcon}" Visibility="{Binding ExpanderIconIsVisible, Mode=TwoWay}" />
+                            <Image Source="{DynamicResource PlusIcon}" Visibility="{TemplateBinding Property=ExpanderIconIsVisible, Converter={StaticResource BoolToVisibilityConverter}}" />
                         </Grid>
                     </Border>
                 </ControlTemplate>

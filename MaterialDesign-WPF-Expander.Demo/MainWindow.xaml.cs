@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-using System.Windows.Input;
 
 namespace MaterialDesign_WPF_Expander.Demo
 {
@@ -11,11 +10,6 @@ namespace MaterialDesign_WPF_Expander.Demo
         public MainWindow()
         {
             InitializeComponent();
-        }
-
-        private void UIElement_OnMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            MessageBox.Show("clicked");
         }
     }
 }

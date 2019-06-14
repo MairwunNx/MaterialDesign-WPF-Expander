@@ -85,7 +85,7 @@ namespace MaterialDesign_WPF_Expander
 
         // Using a DependencyProperty as the backing store for ExpanderExpandIcon.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ExpanderExpandIconProperty =
-            DependencyProperty.Register("ExpanderExpandIcon", typeof(DrawingImage), typeof(Expander), new PropertyMetadata(Application.Current.Resources["PlusIcon"] as DrawingImage));
+            DependencyProperty.Register("ExpanderExpandIcon", typeof(DrawingImage), typeof(Expander), new PropertyMetadata(Application.Current.Resources["PlusIcon"]));
 
 
 
