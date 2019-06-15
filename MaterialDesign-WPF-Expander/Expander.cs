@@ -1,7 +1,5 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
-using static System.Windows.Application;
 #pragma warning disable 1591
 
 namespace MaterialDesign_WPF_Expander
@@ -50,22 +48,6 @@ namespace MaterialDesign_WPF_Expander
                 typeof(Expander),
                 new PropertyMetadata(true)
             );
-
-
-        /*public DrawingImage ExpanderExpandIcon
-        {
-            get => (DrawingImage) GetValue(ExpanderExpandIconProperty);
-            set => SetValue(ExpanderExpandIconProperty, value);
-        }*/
-
-        /*public static readonly DependencyProperty ExpanderExpandIconProperty =
-            DependencyProperty.Register(
-                "ExpanderExpandIcon",
-                typeof(DrawingImage),
-                typeof(Expander),
-                new PropertyMetadata(Current.Resources["PlusIcon"] as DrawingImage)
-            );*/
-
 
         public bool ExpanderIsOpened
         {

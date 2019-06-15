@@ -3,7 +3,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     x:Name="Icons">
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="/MaterialDesign-WPF-Expander;component/Themes/Theme.xaml" />
         <ResourceDictionary Source="/MaterialDesign-WPF-Expander;component/Themes/LightDictionary.xaml" />
         <ResourceDictionary Source="/MaterialDesign-WPF-Expander;component/Themes/DarkDictionary.xaml" />
     </ResourceDictionary.MergedDictionaries>
