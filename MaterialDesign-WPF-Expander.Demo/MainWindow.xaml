@@ -3,7 +3,6 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:MaterialDesign_WPF_Expander.Demo"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:mdex="clr-namespace:MaterialDesign_WPF_Expander;assembly=MaterialDesign-WPF-Expander"
     Title="MainWindow"
@@ -25,25 +24,46 @@
             Text="Here's what you get with every domain"
             TextWrapping="WrapWithOverflow" />
 
-        <mdex:Expander
-            x:Name="PrivacyExpander"
-            Title="Privacy included at no additional cost"
-            Grid.Row="1"
-            Margin="25,20,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top">
-            <Grid>
-                <TextBlock
-                    Width="{Binding ElementName=PrivacyExpander, Path=Width}"
-                    MaxWidth="880"
-                    Padding="40,0,0,0"
-                    FontFamily="Roboto Light"
-                    FontSize="14"
-                    Foreground="#424242"
-                    Text="When you purchase or transfer a domain name, privacy included is almost always an option (some domain name endings do not support this feature). If privacy included is selected, we cover the cost of keeping your details private (e.g. your name, address, and other contact information)."
-                    TextWrapping="WrapWithOverflow" />
-            </Grid>
-        </mdex:Expander>
+        <StackPanel Grid.Row="1">
+            <mdex:Expander
+                x:Name="PrivacyExpander"
+                Title="Privacy included at no additional cost"
+                Margin="25,20,0,35"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top">
+                <Grid>
+                    <TextBlock
+                        Width="{Binding ElementName=PrivacyExpander, Path=Width}"
+                        MaxWidth="880"
+                        Padding="40,0,0,0"
+                        FontFamily="Roboto Light"
+                        FontSize="14"
+                        Foreground="#424242"
+                        Text="When you purchase or transfer a domain name, privacy included is almost always an option (some domain name endings do not support this feature). If privacy included is selected, we cover the cost of keeping your details private (e.g. your name, address, and other contact information)."
+                        TextWrapping="WrapWithOverflow" />
+                </Grid>
+            </mdex:Expander>
+
+            <mdex:Expander
+                x:Name="EasyIntegrationExpander"
+                Title="Easy integration with top website builders"
+                Margin="25,0,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                ExpanderIsOpened="True">
+                <Grid>
+                    <TextBlock
+                        Width="{Binding ElementName=PrivacyExpander, Path=Width}"
+                        MaxWidth="880"
+                        Padding="40,0,0,0"
+                        FontFamily="Roboto Light"
+                        FontSize="14"
+                        Foreground="#424242"
+                        Text="When you purchase or transfer a domain to Google Domains, you can immediately start creating your website with one of our website building providers. Plans vary in cost, and options include secure and reliable hosting, customizable templates, and powerful features like drag and drop creation and mobile site-management."
+                        TextWrapping="WrapWithOverflow" />
+                </Grid>
+            </mdex:Expander>
+        </StackPanel>
     </Grid>
 </Window>
 

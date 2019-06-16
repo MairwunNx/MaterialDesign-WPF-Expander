@@ -22,7 +22,7 @@
                         <Border.DataContext>
                             <local:Expander />
                         </Border.DataContext>
-                        <Grid Background="{DynamicResource Ex-Background-Brush}">
+                        <Grid x:Name="ExpanderGrid" Background="{DynamicResource Ex-Background-Brush}">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition />
@@ -39,7 +39,9 @@
                                 Source="{DynamicResource PlusIcon}"
                                 Visibility="{TemplateBinding Property=ExpanderIconIsVisible,
                                                              Converter={StaticResource BoolToVisibilityConverter}}" />
+
                             <TextBlock
+                                x:Name="ExpanderHeader"
                                 Grid.Row="0"
                                 Grid.Column="1"
                                 Margin="0,0,20,0"
@@ -47,8 +49,19 @@
                                 Cursor="Hand"
                                 FontFamily="Roboto Light"
                                 FontSize="24"
+                                Foreground="#424242"
                                 Text="{TemplateBinding Title}"
-                                TextWrapping="WrapWithOverflow" />
+                                TextWrapping="WrapWithOverflow">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Foreground" Value="red" />
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
 
                             <Grid
                                 x:Name="ContentGrid"
@@ -56,7 +69,9 @@
                                 Grid.Column="0"
                                 Grid.ColumnSpan="2"
                                 HorizontalAlignment="Left"
-                                Background="Transparent">
+                                Background="Transparent"
+                                Visibility="{TemplateBinding Property=ExpanderIsOpened,
+                                                             Converter={StaticResource BoolToVisibilityConverter}}">
                                 <ContentPresenter Margin="0,15,0,0" />
                             </Grid>
                         </Grid>

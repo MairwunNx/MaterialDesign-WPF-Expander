@@ -1,6 +1,10 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Markup;
+using System.Windows.Media.Animation;
+using System.Windows.Shapes;
 
 #pragma warning disable 1591
 
@@ -22,7 +26,7 @@ namespace MaterialDesign_WPF_Expander
         }
 
         public static readonly DependencyProperty ContentProperty =
-            DependencyProperty.Register("Content", typeof(object), typeof(Expander), null);
+            DependencyProperty.Register(nameof(Content), typeof(object), typeof(Expander), null);
 
         public string Title
         {
@@ -32,12 +36,12 @@ namespace MaterialDesign_WPF_Expander
 
         // Using a DependencyProperty as the backing store for Title.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty TitleProperty =
-            DependencyProperty.Register("Title", typeof(string), typeof(Expander), new PropertyMetadata("Expander"));
+            DependencyProperty.Register(nameof(Title), typeof(string), typeof(Expander), new PropertyMetadata("Expander"));
 
 
         public static readonly DependencyProperty ExpanderGroupProperty =
             DependencyProperty.Register(
-                "ExpanderGroup",
+                nameof(ExpanderGroup),
                 typeof(string),
                 typeof(Expander),
                 new PropertyMetadata("default")
@@ -45,13 +49,13 @@ namespace MaterialDesign_WPF_Expander
 
         public bool ExpanderOnlyOneOpenedObject
         {
-            get => (bool) GetValue(ExpanderOnlyOneOpenedObjectProperty);
+            get => (bool)GetValue(ExpanderOnlyOneOpenedObjectProperty);
             set => SetValue(ExpanderOnlyOneOpenedObjectProperty, value);
         }
 
         public static readonly DependencyProperty ExpanderOnlyOneOpenedObjectProperty =
             DependencyProperty.Register(
-                "ExpanderOnlyOneOpenedObject",
+                nameof(ExpanderOnlyOneOpenedObject),
                 typeof(bool),
                 typeof(Expander),
                 new PropertyMetadata(true)
@@ -60,13 +64,13 @@ namespace MaterialDesign_WPF_Expander
 
         public bool ExpanderIconIsVisible
         {
-            get => (bool) GetValue(ExpanderIconIsVisibleProperty);
+            get => (bool)GetValue(ExpanderIconIsVisibleProperty);
             set => SetValue(ExpanderIconIsVisibleProperty, value);
         }
 
         public static readonly DependencyProperty ExpanderIconIsVisibleProperty =
             DependencyProperty.Register(
-                "ExpanderIconIsVisible",
+                nameof(ExpanderIconIsVisible),
                 typeof(bool),
                 typeof(Expander),
                 new PropertyMetadata(true)
@@ -74,18 +78,73 @@ namespace MaterialDesign_WPF_Expander
 
         public bool ExpanderIsOpened
         {
-            get => (bool) GetValue(ExpanderIsOpenedProperty);
+            get => (bool)GetValue(ExpanderIsOpenedProperty);
             set => SetValue(ExpanderIsOpenedProperty, value);
         }
 
         public static readonly DependencyProperty ExpanderIsOpenedProperty =
             DependencyProperty.Register(
-                "ExpanderIsOpen",
+                nameof(ExpanderIsOpened),
                 typeof(bool),
                 typeof(Expander),
                 new PropertyMetadata(false)
             );
 
+        public int OpenAnimationDuration
+        {
+            get { return (int)GetValue(OpenAnimationDurationProperty); }
+            set { SetValue(OpenAnimationDurationProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for OpenAnimationDuration.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty OpenAnimationDurationProperty =
+            DependencyProperty.Register(nameof(OpenAnimationDuration), typeof(int), typeof(Expander), new PropertyMetadata(0));
+
+
+
+        public override void OnApplyTemplate()
+        {
+            TextBlock expanderHeader = GetTemplateChild("ExpanderHeader") as TextBlock;
+            Grid expanderGrid = GetTemplateChild("ExpanderGrid") as Grid;
+            Grid contentGrid = GetTemplateChild("ContentGrid") as Grid;
+            Storyboard storyboard = new Storyboard();
+            Storyboard.SetTargetName(expanderGrid, expanderGrid.Name);
+
+            expanderHeader.MouseLeftButtonUp += (s, e) =>
+            {
+                if (ExpanderIsOpened)
+                {/*
+                    DoubleAnimation doubleAnimation = new DoubleAnimation
+                    {
+                        To = expanderHeader.ActualHeight,
+                        From = expanderGrid.ActualHeight,
+                        Duration = new Duration(TimeSpan.FromMilliseconds(OpenAnimationDuration)),
+                    };
+
+                    Storyboard.SetTargetProperty(doubleAnimation, new PropertyPath(HeightProperty));
+                    storyboard.Children.Add(doubleAnimation);*/
+                    ExpanderIsOpened = false;
+//                    storyboard.Completed +=(sender, args) => ExpanderIsOpened = false;
+//                    storyboard.Begin(expanderGrid);
+                }
+                else
+                {
+//                    DoubleAnimation doubleAnimation = new DoubleAnimation
+//                    {
+//                        To = contentGrid.ActualHeight + expanderHeader.ActualHeight,
+//                        From = expanderHeader.ActualHeight,
+//                        Duration = new Duration(TimeSpan.FromMilliseconds(OpenAnimationDuration)),
+//                    };
+//
+//                    Storyboard.SetTargetProperty(doubleAnimation, new PropertyPath(HeightProperty));
+//                    storyboard.Children.Add(doubleAnimation);
+                    
+                    ExpanderIsOpened = true;
+//                    storyboard.Begin(expanderGrid);
+                }
+            };
+
+        }
 
         static Expander()
         {
