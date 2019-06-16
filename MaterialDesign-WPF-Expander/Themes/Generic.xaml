@@ -31,7 +31,9 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="{TemplateBinding Width}" />
                             </Grid.ColumnDefinitions>
+
                             <Image
+                                x:Name="ExpanderIcon"
                                 Grid.Row="0"
                                 Grid.Column="0"
                                 Height="23"
