@@ -23,7 +23,42 @@
                             <local:Expander />
                         </Border.DataContext>
                         <Grid Background="{DynamicResource Ex-Background-Brush}">
-                            <Image Source="{DynamicResource PlusIcon}" Visibility="{TemplateBinding Property=ExpanderIconIsVisible, Converter={StaticResource BoolToVisibilityConverter}}" />
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="{TemplateBinding Width}" />
+                            </Grid.ColumnDefinitions>
+                            <Image
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Height="23"
+                                Cursor="Hand"
+                                Source="{DynamicResource PlusIcon}"
+                                Visibility="{TemplateBinding Property=ExpanderIconIsVisible,
+                                                             Converter={StaticResource BoolToVisibilityConverter}}" />
+                            <TextBlock
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Margin="0,0,20,0"
+                                Padding="15,0,0,0"
+                                Cursor="Hand"
+                                FontFamily="Roboto Light"
+                                FontSize="24"
+                                Text="{TemplateBinding Title}"
+                                TextWrapping="WrapWithOverflow" />
+
+                            <Grid
+                                x:Name="ContentGrid"
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="2"
+                                HorizontalAlignment="Left"
+                                Background="Transparent">
+                                <ContentPresenter Margin="0,15,0,0" />
+                            </Grid>
                         </Grid>
                     </Border>
                 </ControlTemplate>

@@ -25,10 +25,25 @@
             Text="Here's what you get with every domain"
             TextWrapping="WrapWithOverflow" />
 
-        <mdex:Expander Grid.Row="1" ExpanderIconIsVisible="True" />
-
-        <!--  <Grid Grid.Row="1" Background="{DynamicResource Ex-Background-Brush}">
-            <Image Source="{StaticResource PlusIcon}" />
-        </Grid>-->
+        <mdex:Expander
+            x:Name="PrivacyExpander"
+            Title="Privacy included at no additional cost"
+            Grid.Row="1"
+            Margin="25,20,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top">
+            <Grid>
+                <TextBlock
+                    Width="{Binding ElementName=PrivacyExpander, Path=Width}"
+                    MaxWidth="880"
+                    Padding="40,0,0,0"
+                    FontFamily="Roboto Light"
+                    FontSize="14"
+                    Foreground="#424242"
+                    Text="When you purchase or transfer a domain name, privacy included is almost always an option (some domain name endings do not support this feature). If privacy included is selected, we cover the cost of keeping your details private (e.g. your name, address, and other contact information)."
+                    TextWrapping="WrapWithOverflow" />
+            </Grid>
+        </mdex:Expander>
     </Grid>
 </Window>
+

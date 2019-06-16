@@ -1,9 +1,12 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Markup;
+
 #pragma warning disable 1591
 
 namespace MaterialDesign_WPF_Expander
 {
+    [ContentProperty("Content")]
     public class Expander : Control
     {
         public string ExpanderGroup
@@ -11,6 +14,26 @@ namespace MaterialDesign_WPF_Expander
             get => GetValue(ExpanderGroupProperty) as string;
             set => SetValue(ExpanderGroupProperty, value);
         }
+
+        public object Content
+        {
+            get { return GetValue(ContentProperty); }
+            set { SetValue(ContentProperty, value); }
+        }
+
+        public static readonly DependencyProperty ContentProperty =
+            DependencyProperty.Register("Content", typeof(object), typeof(Expander), null);
+
+        public string Title
+        {
+            get { return (string)GetValue(TitleProperty); }
+            set { SetValue(TitleProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for Title.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty TitleProperty =
+            DependencyProperty.Register("Title", typeof(string), typeof(Expander), new PropertyMetadata("Expander"));
+
 
         public static readonly DependencyProperty ExpanderGroupProperty =
             DependencyProperty.Register(
