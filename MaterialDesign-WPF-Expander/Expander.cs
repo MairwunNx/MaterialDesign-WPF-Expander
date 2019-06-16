@@ -103,6 +103,17 @@ namespace MaterialDesign_WPF_Expander
                 typeof(Expander), new PropertyMetadata(0));
 
 
+
+        public double ExpanderIconZoom
+        {
+            get => (double)GetValue(ExpanderIconZoomProperty);
+            set => SetValue(ExpanderIconZoomProperty, value);
+        }
+
+        public static readonly DependencyProperty ExpanderIconZoomProperty =
+            DependencyProperty.Register(nameof(ExpanderIconZoom), typeof(double), typeof(Expander), new PropertyMetadata(0.6));
+
+
         public override void OnApplyTemplate()
         {
             TextBlock expanderHeader = GetTemplateChild("ExpanderHeader") as TextBlock;

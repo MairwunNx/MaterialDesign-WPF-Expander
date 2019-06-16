@@ -36,11 +36,21 @@
                                 x:Name="ExpanderIcon"
                                 Grid.Row="0"
                                 Grid.Column="0"
-                                Height="23"
+                                Width="25"
+                                Height="25"
+                                VerticalAlignment="Center"
                                 Cursor="Hand"
+                                RenderTransformOrigin="0.5,0.5"
                                 Source="{DynamicResource PlusIcon}"
+                                Stretch="Uniform"
                                 Visibility="{TemplateBinding Property=ExpanderIconIsVisible,
-                                                             Converter={StaticResource BoolToVisibilityConverter}}" />
+                                                             Converter={StaticResource BoolToVisibilityConverter}}">
+                                <Image.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="{TemplateBinding ExpanderIconZoom}" ScaleY="{TemplateBinding ExpanderIconZoom}" />
+                                    </TransformGroup>
+                                </Image.RenderTransform>
+                            </Image>
 
                             <TextBlock
                                 x:Name="ExpanderHeader"
