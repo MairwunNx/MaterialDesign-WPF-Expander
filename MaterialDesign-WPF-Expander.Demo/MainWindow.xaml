@@ -67,7 +67,7 @@
                 </Grid>
             </mdex:Expander>
 
-            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+            <WrapPanel HorizontalAlignment="Center" Orientation="Horizontal">
                 <ToggleButton
                     x:Name="DisableBorderToggleButton"
                     Margin="35,35,35,0"
@@ -75,22 +75,26 @@
                     Click="DisableBorderToggleButton_Click"
                     Content="Disable Border"
                     IsChecked="False" />
-                <ToggleButton x:Name="SwitchIsOpenToggleButton"
+                <ToggleButton
+                    x:Name="SwitchIsOpenToggleButton"
                     Margin="35,35,35,0"
                     HorizontalAlignment="Left"
+                    Click="SwitchIsOpenToggleButton_Click"
                     Content="Switch Is Open"
-                    IsChecked="False" Click="SwitchIsOpenToggleButton_Click" />
-                <ToggleButton x:Name="SwitchBorderThickness"
+                    IsChecked="False" />
+                <ToggleButton
+                    x:Name="SwitchBorderThickness"
                     Margin="35,35,35,0"
                     HorizontalAlignment="Left"
+                    Click="SwitchBorderThickness_Click"
                     Content="Switch Border Thickness"
-                    IsChecked="False" Click="SwitchBorderThickness_Click" />
+                    IsChecked="False" />
                 <ToggleButton
                     Margin="35,35,35,0"
                     HorizontalAlignment="Left"
                     Content="Switch Theme"
                     IsChecked="False" />
-            </StackPanel>
+            </WrapPanel>
         </StackPanel>
     </Grid>
 </Window>
