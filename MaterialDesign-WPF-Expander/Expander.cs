@@ -11,6 +11,8 @@ namespace MaterialDesign_WPF_Expander
     [ContentProperty("Content")]
     public class Expander : Control
     {
+        private Image _expanderIcon;
+
         public string ExpanderGroup
         {
             get => GetValue(ExpanderGroupProperty) as string;
@@ -80,7 +82,14 @@ namespace MaterialDesign_WPF_Expander
         public bool ExpanderIsOpened
         {
             get => (bool) GetValue(ExpanderIsOpenedProperty);
-            set => SetValue(ExpanderIsOpenedProperty, value);
+            set
+            {
+                SetValue(ExpanderIsOpenedProperty, value);
+                _expanderIcon.Source =
+                    value
+                        ? (ImageSource) Application.Current.Resources["MinusIcon"]
+                        : (ImageSource) Application.Current.Resources["PlusIcon"];
+            }
         }
 
         public static readonly DependencyProperty ExpanderIsOpenedProperty =
@@ -94,7 +103,10 @@ namespace MaterialDesign_WPF_Expander
         public int OpenAnimationDuration
         {
             get { return (int) GetValue(OpenAnimationDurationProperty); }
-            set { SetValue(OpenAnimationDurationProperty, value); }
+            set
+            {
+                SetValue(OpenAnimationDurationProperty, value);
+            }
         }
 
         // Using a DependencyProperty as the backing store for OpenAnimationDuration.  This enables animation, styling, binding, etc...
@@ -113,21 +125,28 @@ namespace MaterialDesign_WPF_Expander
         public static readonly DependencyProperty ExpanderIconZoomProperty =
             DependencyProperty.Register(nameof(ExpanderIconZoom), typeof(double), typeof(Expander), new PropertyMetadata(0.7));
 
+        private void InitExpanderIsOpenedIcon()
+        {
+            _expanderIcon.Source = ExpanderIsOpened
+                ? (ImageSource)Application.Current.Resources["MinusIcon"]
+                : (ImageSource)Application.Current.Resources["PlusIcon"];
+        }
 
         public override void OnApplyTemplate()
         {
             TextBlock expanderHeader = GetTemplateChild("ExpanderHeader") as TextBlock;
             Grid expanderGrid = GetTemplateChild("ExpanderGrid") as Grid;
             Grid contentGrid = GetTemplateChild("ContentGrid") as Grid;
-            Image expanderIcon = GetTemplateChild("ExpanderIcon") as Image;
+            _expanderIcon = GetTemplateChild("ExpanderIcon") as Image;
             Storyboard storyboard = new Storyboard();
             Storyboard.SetTargetName(expanderGrid, expanderGrid.Name);
+
+            InitExpanderIsOpenedIcon();
 
             expanderHeader.MouseLeftButtonUp += (s, e) =>
             {
                 if (ExpanderIsOpened)
                 {
-                    expanderIcon.Source = (ImageSource) Application.Current.Resources["PlusIcon"];
                     /*
                 DoubleAnimation doubleAnimation = new DoubleAnimation
                 {
@@ -144,7 +163,6 @@ namespace MaterialDesign_WPF_Expander
                 }
                 else
                 {
-                    expanderIcon.Source = (ImageSource) Application.Current.Resources["MinusIcon"];
 //                    DoubleAnimation doubleAnimation = new DoubleAnimation
 //                    {
 //                        To = contentGrid.ActualHeight + expanderHeader.ActualHeight,
