@@ -111,7 +111,7 @@ namespace MaterialDesign_WPF_Expander
         }
 
         public static readonly DependencyProperty ExpanderIconZoomProperty =
-            DependencyProperty.Register(nameof(ExpanderIconZoom), typeof(double), typeof(Expander), new PropertyMetadata(0.6));
+            DependencyProperty.Register(nameof(ExpanderIconZoom), typeof(double), typeof(Expander), new PropertyMetadata(0.7));
 
 
         public override void OnApplyTemplate()

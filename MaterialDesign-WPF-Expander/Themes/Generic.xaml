@@ -47,7 +47,7 @@
                                                              Converter={StaticResource BoolToVisibilityConverter}}">
                                 <Image.RenderTransform>
                                     <TransformGroup>
-                                        <ScaleTransform ScaleX="{TemplateBinding ExpanderIconZoom}" ScaleY="{TemplateBinding ExpanderIconZoom}" />
+                                        <ScaleTransform ScaleX="{Binding ExpanderIconZoom, RelativeSource={RelativeSource TemplatedParent}}" ScaleY="{Binding ExpanderIconZoom, RelativeSource={RelativeSource TemplatedParent}}" />
                                     </TransformGroup>
                                 </Image.RenderTransform>
                             </Image>
