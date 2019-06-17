@@ -12,6 +12,7 @@ namespace MaterialDesign_WPF_Expander
     public class Expander : Control
     {
         private Image _expanderIcon;
+        private Border _expanderBorder;
 
         public string ExpanderGroup
         {
@@ -138,6 +139,7 @@ namespace MaterialDesign_WPF_Expander
             Grid expanderGrid = GetTemplateChild("ExpanderGrid") as Grid;
             Grid contentGrid = GetTemplateChild("ContentGrid") as Grid;
             _expanderIcon = GetTemplateChild("ExpanderIcon") as Image;
+            _expanderBorder = GetTemplateChild("ExpanderBorder") as Border;
             Storyboard storyboard = new Storyboard();
             Storyboard.SetTargetName(expanderGrid, expanderGrid.Name);
 
@@ -178,6 +180,51 @@ namespace MaterialDesign_WPF_Expander
                 }
             };
         }
+
+
+        public double ExpanderBottomBorderThickness
+        {
+            get { return (double)GetValue(ExpanderBottomBorderThicknessProperty); }
+            set
+            {
+                SetValue(ExpanderBottomBorderThicknessProperty, value);
+
+                if (ExpanderBottomBorderIsVisible)
+                {
+                    _expanderBorder.BorderThickness = new Thickness(0, 0, 0, value);
+                }
+            }
+        }
+
+        // Using a DependencyProperty as the backing store for ExpanderBottomBorderThinkness.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ExpanderBottomBorderThicknessProperty =
+            DependencyProperty.Register("ExpanderBottomBorderThinkness", typeof(double), typeof(Expander), new PropertyMetadata(1.0));
+
+
+        public bool ExpanderBottomBorderIsVisible
+        {
+            get { return (bool)GetValue(ExpanderBottomBorderIsVisibleProperty); }
+            set
+            {
+                SetValue(ExpanderBottomBorderIsVisibleProperty, value);
+
+                if (value)
+                {
+                    _expanderBorder.BorderThickness = new Thickness(0, 0, 0, ExpanderBottomBorderThickness);
+                }
+                else
+                {
+                    ExpanderBottomBorderThickness = _expanderBorder.BorderThickness.Bottom;
+                    _expanderBorder.BorderThickness = new Thickness(0, 0, 0, 0);
+                }
+            }
+        }
+
+        // Using a DependencyProperty as the backing store for ExpanderBottomBorderIsVisible.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ExpanderBottomBorderIsVisibleProperty =
+            DependencyProperty.Register(nameof(ExpanderBottomBorderIsVisible), typeof(bool), typeof(Expander), new PropertyMetadata(true));
+
+
 
         static Expander()
         {

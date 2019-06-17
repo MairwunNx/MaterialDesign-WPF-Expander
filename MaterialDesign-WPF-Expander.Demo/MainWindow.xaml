@@ -9,7 +9,7 @@
     Width="886"
     Height="565"
     mc:Ignorable="d">
-    <Grid>
+    <Grid Background="{DynamicResource Ex-Background-Brush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />
@@ -20,7 +20,7 @@
             VerticalAlignment="Top"
             FontFamily="Roboto Light"
             FontSize="36"
-            Foreground="#FF424242"
+            Foreground="{DynamicResource Ex-HeaderForeground-Brush}"
             Text="Here's what you get with every domain"
             TextWrapping="WrapWithOverflow" />
 
@@ -28,9 +28,11 @@
             <mdex:Expander
                 x:Name="PrivacyExpander"
                 Title="Privacy included at no additional cost"
+                MaxWidth="880"
                 Margin="25,20,0,35"
                 HorizontalAlignment="Left"
-                VerticalAlignment="Top">
+                VerticalAlignment="Top"
+                ExpanderIsOpened="False">
                 <Grid>
                     <TextBlock
                         Width="{Binding ElementName=PrivacyExpander, Path=Width}"
@@ -38,7 +40,7 @@
                         Padding="40,0,0,0"
                         FontFamily="Roboto Light"
                         FontSize="14"
-                        Foreground="#424242"
+                        Foreground="{DynamicResource Ex-HeaderForeground-Brush}"
                         Text="When you purchase or transfer a domain name, privacy included is almost always an option (some domain name endings do not support this feature). If privacy included is selected, we cover the cost of keeping your details private (e.g. your name, address, and other contact information)."
                         TextWrapping="WrapWithOverflow" />
                 </Grid>
@@ -47,22 +49,48 @@
             <mdex:Expander
                 x:Name="EasyIntegrationExpander"
                 Title="Easy integration with top website builders"
+                MaxWidth="880"
                 Margin="25,0,0,0"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 ExpanderIsOpened="True">
                 <Grid>
                     <TextBlock
-                        Width="{Binding ElementName=PrivacyExpander, Path=Width}"
+                        Width="{Binding ElementName=EasyIntegrationExpander, Path=Width}"
                         MaxWidth="880"
                         Padding="40,0,0,0"
                         FontFamily="Roboto Light"
                         FontSize="14"
-                        Foreground="#424242"
+                        Foreground="{DynamicResource Ex-HeaderForeground-Brush}"
                         Text="When you purchase or transfer a domain to Google Domains, you can immediately start creating your website with one of our website building providers. Plans vary in cost, and options include secure and reliable hosting, customizable templates, and powerful features like drag and drop creation and mobile site-management."
                         TextWrapping="WrapWithOverflow" />
                 </Grid>
             </mdex:Expander>
+
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                <ToggleButton
+                    x:Name="DisableBorderToggleButton"
+                    Margin="35,35,35,0"
+                    HorizontalAlignment="Left"
+                    Click="DisableBorderToggleButton_Click"
+                    Content="Disable Border"
+                    IsChecked="False" />
+                <ToggleButton x:Name="SwitchIsOpenToggleButton"
+                    Margin="35,35,35,0"
+                    HorizontalAlignment="Left"
+                    Content="Switch Is Open"
+                    IsChecked="False" Click="SwitchIsOpenToggleButton_Click" />
+                <ToggleButton x:Name="SwitchBorderThickness"
+                    Margin="35,35,35,0"
+                    HorizontalAlignment="Left"
+                    Content="Switch Border Thickness"
+                    IsChecked="False" Click="SwitchBorderThickness_Click" />
+                <ToggleButton
+                    Margin="35,35,35,0"
+                    HorizontalAlignment="Left"
+                    Content="Switch Theme"
+                    IsChecked="False" />
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Window>
