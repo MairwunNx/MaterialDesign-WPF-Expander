@@ -95,6 +95,12 @@
                     Content="Switch Theme"
                     IsChecked="False" />
             </WrapPanel>
+            <StackPanel x:Name="BaseStack" Height="20">
+                <Button x:Name="BaseButton" Click="ButtonBase_OnClick">Hide</Button>
+                <Grid x:Name="BaseContent">
+                    <Label Background="White">Test</Label>
+                </Grid>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Window>

@@ -17,7 +17,6 @@
                 <ControlTemplate TargetType="{x:Type local:Expander}">
                     <Border
                         x:Name="ExpanderBorder"
-                        Width="{Binding ElementName=ContentGrid, Path=Width}"
                         Padding="0,0,18,24"
                         BorderBrush="{DynamicResource Ex-BottomBorderFill-Brush}"
                         BorderThickness="0,0,0,1">
@@ -83,10 +82,12 @@
                                 Grid.Column="0"
                                 Grid.ColumnSpan="2"
                                 HorizontalAlignment="Left"
-                                Background="Transparent"
-                                Visibility="{TemplateBinding Property=ExpanderIsOpened,
-                                                             Converter={StaticResource BoolToVisibilityConverter}}">
-                                <ContentPresenter Margin="0,15,0,0" />
+                                Background="Transparent">
+                                <!--
+                                    Visibility="{TemplateBinding Property=ExpanderIsOpened,
+                                    Converter={StaticResource BoolToVisibilityConverter}}"
+                                -->
+                                <ContentPresenter Visibility="Visible" x:Name="ContentPresenter" Margin="0,15,0,0" />
                             </Grid>
                         </Grid>
                     </Border>
