@@ -190,23 +190,6 @@ namespace MaterialDesign_WPF_Expander
                 }
                 else
                 {
-
-                    Debug.WriteLine("===========================");
-                    Debug.WriteLine("From: TESTS");
-                    Debug.WriteLine($"Expander Header Height: {_expanderHeader.Height}");
-                    Debug.WriteLine($"Expander Header A!Height: {_expanderHeader.ActualHeight}");
-                    Debug.WriteLine("To: TESTS");
-                    Debug.WriteLine($"Content Presenter Height: {_contentPresenter.Height}");
-                    Debug.WriteLine(
-                        $"Content Presenter A!Height: {_contentPresenter.ActualHeight}");
-                    Debug.WriteLine($"Expand Border Height: {_expanderBorder.Height}");
-                    Debug.WriteLine($"Expand Border A!Height: {_expanderBorder.ActualHeight}");
-                    Debug.WriteLine($"Content Grid Height: {_contentGrid.Height}");
-                    Debug.WriteLine($"Content Grid A!Height: {Math.Round(_contentGrid.ActualHeight) * 100}");
-                    Debug.WriteLine($"Content Grid A!Height: {_contentGrid.ActualHeight}");
-                    
-                    Debug.WriteLine("===========================");
-
                     DoubleAnimation doubleAnimation = new DoubleAnimation
                     {
                         To = _expanderHeader.ActualHeight +
@@ -217,7 +200,7 @@ namespace MaterialDesign_WPF_Expander
                         From = _expanderHeader.ActualHeight,
                         Duration = new Duration(TimeSpan.FromMilliseconds(OpenAnimationDuration)),
                     };
-
+                    
                     Storyboard.SetTargetProperty(doubleAnimation, new PropertyPath(HeightProperty));
                     Storyboard storyboard = new Storyboard();
                     storyboard.Children.Add(doubleAnimation);
