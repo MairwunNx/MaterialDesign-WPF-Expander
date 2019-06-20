@@ -31,8 +31,7 @@
                 MaxWidth="880"
                 Margin="25,20,0,35"
                 HorizontalAlignment="Left"
-                VerticalAlignment="Top"
-                ExpanderIsOpened="False">
+                VerticalAlignment="Top">
                 <Grid>
                     <TextBlock
                         Width="{Binding ElementName=PrivacyExpander, Path=Width}"
@@ -95,12 +94,6 @@
                     Content="Switch Theme"
                     IsChecked="False" />
             </WrapPanel>
-            <StackPanel x:Name="BaseStack" Height="20">
-                <Button x:Name="BaseButton" Click="ButtonBase_OnClick">Hide</Button>
-                <Grid x:Name="BaseContent">
-                    <Label Background="White">Test</Label>
-                </Grid>
-            </StackPanel>
         </StackPanel>
     </Grid>
 </Window>

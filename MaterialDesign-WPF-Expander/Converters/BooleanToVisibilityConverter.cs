@@ -12,13 +12,13 @@ namespace MaterialDesign_WPF_Expander.Converters
     internal sealed class BooleanToVisibilityConverter : IValueConverter
     {
         /// <summary>
-        /// Convert bool or Nullable&lt;bool&gt; to Visibility
+        /// Convert bool to Visibility
         /// </summary>
-        /// <param name="value">bool or Nullable&lt;bool&gt;</param>
+        /// <param name="value">boolean value</param>
         /// <param name="targetType">Visibility</param>
         /// <param name="parameter">null</param>
         /// <param name="culture">null</param>
-        /// <returns>Visible or Collapsed</returns>
+        /// <returns>Visible or Hidden</returns>
         public object Convert(
             object value,
             Type targetType,

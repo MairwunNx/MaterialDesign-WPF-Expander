@@ -62,6 +62,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Expander.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="clr-namespace:MaterialDesign_WPF_Expander.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:MaterialDesign_WPF_Expander"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -10,13 +11,14 @@
         <ResourceDictionary Source="/MaterialDesign-WPF-Expander;component/Themes/LightDictionary.xaml" />
         <ResourceDictionary Source="/MaterialDesign-WPF-Expander;component/Themes/DarkDictionary.xaml" />
     </ResourceDictionary.MergedDictionaries>
-    <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+    <converters:BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
     <Style TargetType="{x:Type local:Expander}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:Expander}">
                     <Border
                         x:Name="ExpanderBorder"
+                        Height="Auto"
                         Padding="0,0,18,24"
                         BorderBrush="{DynamicResource Ex-BottomBorderFill-Brush}"
                         BorderThickness="0,0,0,1">
@@ -26,7 +28,7 @@
                         <Grid x:Name="ExpanderGrid" Background="{DynamicResource Ex-Background-Brush}">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
-                                <RowDefinition />
+                                <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
@@ -57,6 +59,7 @@
                                 x:Name="ExpanderHeader"
                                 Grid.Row="0"
                                 Grid.Column="1"
+                                Height="Auto"
                                 Margin="0,0,20,0"
                                 Padding="15,0,0,0"
                                 Cursor="Hand"
@@ -81,13 +84,16 @@
                                 Grid.Row="1"
                                 Grid.Column="0"
                                 Grid.ColumnSpan="2"
+                                Height="Auto"
                                 HorizontalAlignment="Left"
-                                Background="Transparent">
-                                <!--
-                                    Visibility="{TemplateBinding Property=ExpanderIsOpened,
-                                    Converter={StaticResource BoolToVisibilityConverter}}"
-                                -->
-                                <ContentPresenter Visibility="Visible" x:Name="ContentPresenter" Margin="0,15,0,0" />
+                                Background="Transparent"
+                                Visibility="{TemplateBinding Property=ExpanderIsOpened,
+                                                             Converter={StaticResource BoolToVisibilityConverter}}">
+                                <ContentPresenter
+                                    x:Name="ContentPresenter"
+                                    Height="Auto"
+                                    Margin="0,15,0,0"
+                                    Visibility="Visible" />
                             </Grid>
                         </Grid>
                     </Border>

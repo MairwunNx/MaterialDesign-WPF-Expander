@@ -90,11 +90,60 @@ namespace MaterialDesign_WPF_Expander
             get => (bool) GetValue(ExpanderIsOpenedProperty);
             set
             {
-                SetValue(ExpanderIsOpenedProperty, value);
-                _expanderIcon.Source =
-                    value
-                        ? (ImageSource) Application.Current.Resources["MinusIcon"]
-                        : (ImageSource) Application.Current.Resources["PlusIcon"];
+                if (value)
+                {
+                    SetValue(ExpanderIsOpenedProperty, true);
+
+                    DoubleAnimation doubleAnimation = new DoubleAnimation
+                    {
+                        To = _expanderGrid.ActualHeight,
+                        From = _expanderHeader.ActualHeight,
+                        Duration = new Duration(TimeSpan.FromMilliseconds(OpenAnimationDuration)),
+                    };
+
+                    Storyboard.SetTargetName(_expanderGrid, _expanderGrid.Name);
+                    Storyboard.SetTargetProperty(
+                        doubleAnimation,
+                        new PropertyPath(HeightProperty)
+                    );
+                    Storyboard storyboard = new Storyboard();
+                    storyboard.Children.Add(doubleAnimation);
+                    storyboard.Completed += (sender, args) =>
+                    {
+                        _expanderIcon.Source =
+                            Application.Current.Resources["MinusIcon"] as ImageSource;
+                        _expanderGrid.ClearValue(HeightProperty);
+                        _expanderBorder.ClearValue(HeightProperty);
+                        _expanderGrid.RowDefinitions[1].ClearValue(HeightProperty);
+                        _expanderGrid.RowDefinitions[0].ClearValue(HeightProperty);
+                    };
+                    storyboard.Begin(_expanderGrid);
+                }
+                else
+                {
+                    DoubleAnimation doubleAnimation = new DoubleAnimation
+                    {
+                        To = _expanderHeader.ActualHeight,
+                        From = _expanderGrid.ActualHeight,
+                        Duration = new Duration(TimeSpan.FromMilliseconds(OpenAnimationDuration))
+                    };
+
+                    Storyboard.SetTargetName(_expanderGrid, _expanderGrid.Name);
+                    Storyboard.SetTargetProperty(
+                        doubleAnimation,
+                        new PropertyPath(HeightProperty)
+                    );
+                    Storyboard storyboard = new Storyboard();
+                    storyboard.Children.Add(doubleAnimation);
+                    storyboard.Completed += (sender, args) =>
+                    {
+                        _expanderIcon.Source =
+                            Application.Current.Resources["PlusIcon"] as ImageSource;
+
+                        SetValue(ExpanderIsOpenedProperty, false);
+                    };
+                    storyboard.Begin(_expanderGrid);
+                }
             }
         }
 
@@ -137,77 +186,48 @@ namespace MaterialDesign_WPF_Expander
 
         private void InitExpanderHeightByIsOpened()
         {
-            if (ExpanderIsOpened)
+            if (!ExpanderIsOpened)
             {
-                _expanderGrid.Height =
-                    _expanderHeader.ActualHeight + 
-                    _contentPresenter.Height + 
-                    _expanderBorder.BorderThickness.Bottom +
-                    _expanderBorder.Padding.Bottom;
-            }
-            else
-            {
-                _expanderGrid.Height =
-                    _expanderHeader.ActualHeight +
-                    4 +
-                    _expanderBorder.BorderThickness.Bottom +
-                    _expanderBorder.Padding.Bottom;
+                _expanderGrid.Height = _expanderHeader.ActualHeight;
             }
         }
-        
-        public override void OnApplyTemplate()
+
+        private void AssignElements()
         {
-            _expanderHeader = GetTemplateChild("ExpanderHeader") as TextBlock;
+            _expanderBorder = GetTemplateChild("ExpanderBorder") as Border;
             _expanderGrid = GetTemplateChild("ExpanderGrid") as Grid;
+            _expanderIcon = GetTemplateChild("ExpanderIcon") as Image;
+            _expanderHeader = GetTemplateChild("ExpanderHeader") as TextBlock;
             _contentGrid = GetTemplateChild("ContentGrid") as Grid;
             _contentPresenter = GetTemplateChild("ContentPresenter") as ContentPresenter;
-            _expanderIcon = GetTemplateChild("ExpanderIcon") as Image;
-            _expanderBorder = GetTemplateChild("ExpanderBorder") as Border;
-            Storyboard.SetTargetName(_expanderGrid, _expanderGrid.Name);
+        }
 
-            InitExpanderIsOpenedIcon();
-            InitExpanderHeightByIsOpened();
-            
-            _contentGrid.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
-            _contentPresenter.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
-
+        private void InitExpanderOnClickHandler()
+        {
             _expanderHeader.MouseLeftButtonUp += (s, e) =>
             {
-                if (ExpanderIsOpened)
-                {
-                    DoubleAnimation doubleAnimation = new DoubleAnimation
-                    {
-                        To = _expanderHeader.ActualHeight,
-                        From = _expanderGrid.ActualHeight,
-                        Duration = new Duration(TimeSpan.FromMilliseconds(OpenAnimationDuration)),
-                    };
-
-                    Storyboard.SetTargetProperty(doubleAnimation, new PropertyPath(HeightProperty));
-                    Storyboard storyboard = new Storyboard();
-                    storyboard.Children.Add(doubleAnimation);
-                    storyboard.Completed += (sender, args) => ExpanderIsOpened = false;
-                    storyboard.Begin(_expanderGrid);
-                }
-                else
-                {
-                    DoubleAnimation doubleAnimation = new DoubleAnimation
-                    {
-                        To = _expanderHeader.ActualHeight +
-                             _contentGrid.ActualHeight +
-                             _expanderBorder.ActualHeight +
-                             _expanderBorder.BorderThickness.Bottom +
-                             _expanderBorder.Padding.Bottom,
-                        From = _expanderHeader.ActualHeight,
-                        Duration = new Duration(TimeSpan.FromMilliseconds(OpenAnimationDuration)),
-                    };
-                    
-                    Storyboard.SetTargetProperty(doubleAnimation, new PropertyPath(HeightProperty));
-                    Storyboard storyboard = new Storyboard();
-                    storyboard.Children.Add(doubleAnimation);
-                    storyboard.Completed += (sender, args) => ExpanderIsOpened = true;
-                    storyboard.Begin(_expanderGrid);
-                }
+                ExpanderIsOpened = !ExpanderIsOpened;
             };
+            _expanderIcon.MouseLeftButtonUp += (s, e) =>
+            {
+                ExpanderIsOpened = !ExpanderIsOpened;
+            };
+        }
+
+        private void ProcessElementLoaded()
+        {
+            Loaded += (s, e) =>
+            {
+                InitExpanderIsOpenedIcon();
+                InitExpanderHeightByIsOpened();
+                InitExpanderOnClickHandler();
+            };
+        }
+
+        public override void OnApplyTemplate()
+        {
+            AssignElements();
+            ProcessElementLoaded();
         }
 
         public double ExpanderBottomBorderThickness
