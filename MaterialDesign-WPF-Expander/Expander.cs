@@ -37,7 +37,7 @@ namespace MaterialDesign_WPF_Expander
 
         public string Title
         {
-            get { return (string) GetValue(TitleProperty); }
+            get { return GetValue(TitleProperty) as string; }
             set { SetValue(TitleProperty, value); }
         }
 
@@ -90,6 +90,8 @@ namespace MaterialDesign_WPF_Expander
             get => (bool) GetValue(ExpanderIsOpenedProperty);
             set
             {
+                Storyboard.SetTargetName(_expanderGrid, _expanderGrid.Name);
+
                 if (value)
                 {
                     SetValue(ExpanderIsOpenedProperty, true);
@@ -101,7 +103,6 @@ namespace MaterialDesign_WPF_Expander
                         Duration = new Duration(TimeSpan.FromMilliseconds(OpenAnimationDuration)),
                     };
 
-                    Storyboard.SetTargetName(_expanderGrid, _expanderGrid.Name);
                     Storyboard.SetTargetProperty(
                         doubleAnimation,
                         new PropertyPath(HeightProperty)
@@ -112,10 +113,6 @@ namespace MaterialDesign_WPF_Expander
                     {
                         _expanderIcon.Source =
                             Application.Current.Resources["MinusIcon"] as ImageSource;
-                        _expanderGrid.ClearValue(HeightProperty);
-                        _expanderBorder.ClearValue(HeightProperty);
-                        _expanderGrid.RowDefinitions[1].ClearValue(HeightProperty);
-                        _expanderGrid.RowDefinitions[0].ClearValue(HeightProperty);
                     };
                     storyboard.Begin(_expanderGrid);
                 }
@@ -128,7 +125,6 @@ namespace MaterialDesign_WPF_Expander
                         Duration = new Duration(TimeSpan.FromMilliseconds(OpenAnimationDuration))
                     };
 
-                    Storyboard.SetTargetName(_expanderGrid, _expanderGrid.Name);
                     Storyboard.SetTargetProperty(
                         doubleAnimation,
                         new PropertyPath(HeightProperty)
@@ -139,7 +135,6 @@ namespace MaterialDesign_WPF_Expander
                     {
                         _expanderIcon.Source =
                             Application.Current.Resources["PlusIcon"] as ImageSource;
-
                         SetValue(ExpanderIsOpenedProperty, false);
                     };
                     storyboard.Begin(_expanderGrid);
