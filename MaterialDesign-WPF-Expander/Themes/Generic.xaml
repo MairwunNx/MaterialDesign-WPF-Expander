@@ -16,12 +16,13 @@
     <Style TargetType="{x:Type local:Expander}">
         <Setter Property="FontFamily" Value="Segoe UI Light" />
         <Setter Property="FontSize" Value="24" />
+        <Setter Property="Padding" Value="0,0,18,24" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:Expander}">
                     <Border
                         x:Name="ExpanderBorder"
-                        Padding="0,0,18,24"
+                        Padding="{TemplateBinding Padding}"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"
                         BorderBrush="{DynamicResource Ex-BottomBorderFill-Brush}"
