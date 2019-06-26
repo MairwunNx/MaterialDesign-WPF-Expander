@@ -74,7 +74,7 @@
                                 VerticalAlignment="Top"
                                 Cursor="Hand"
                                 FontFamily="{TemplateBinding FontFamily}"
-                                FontSize="24"
+                                FontSize="{TemplateBinding FontSize}"
                                 Text="{TemplateBinding Title}"
                                 TextWrapping="WrapWithOverflow">
                                 <TextBlock.Style>
