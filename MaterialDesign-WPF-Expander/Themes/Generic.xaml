@@ -18,21 +18,26 @@
                 <ControlTemplate TargetType="{x:Type local:Expander}">
                     <Border
                         x:Name="ExpanderBorder"
-                        Height="Auto"
                         Padding="0,0,18,24"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
                         BorderBrush="{DynamicResource Ex-BottomBorderFill-Brush}"
                         BorderThickness="0,0,0,1">
                         <Border.DataContext>
                             <local:Expander />
                         </Border.DataContext>
-                        <Grid x:Name="ExpanderGrid" Background="{DynamicResource Ex-Background-Brush}">
+                        <Grid
+                            x:Name="ExpanderGrid"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            Background="{DynamicResource Ex-Background-Brush}">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="{TemplateBinding Width}" />
+                                <ColumnDefinition />
                             </Grid.ColumnDefinitions>
 
                             <Image
@@ -59,9 +64,10 @@
                                 x:Name="ExpanderHeader"
                                 Grid.Row="0"
                                 Grid.Column="1"
-                                Height="Auto"
                                 Margin="0,0,20,0"
                                 Padding="15,0,0,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
                                 Cursor="Hand"
                                 FontFamily="Roboto Light"
                                 FontSize="24"
@@ -79,22 +85,16 @@
                                 </TextBlock.Style>
                             </TextBlock>
 
-                            <Grid
-                                x:Name="ContentGrid"
+                            <ContentPresenter
+                                x:Name="ContentPresenter"
                                 Grid.Row="1"
                                 Grid.Column="0"
                                 Grid.ColumnSpan="2"
-                                Height="Auto"
+                                Margin="0,15,0,0"
                                 HorizontalAlignment="Left"
-                                Background="Transparent"
+                                VerticalAlignment="Top"
                                 Visibility="{TemplateBinding Property=ExpanderIsOpened,
-                                                             Converter={StaticResource BoolToVisibilityConverter}}">
-                                <ContentPresenter
-                                    x:Name="ContentPresenter"
-                                    Height="Auto"
-                                    Margin="0,15,0,0"
-                                    Visibility="Visible" />
-                            </Grid>
+                                                             Converter={StaticResource BoolToVisibilityConverter}}" />
                         </Grid>
                     </Border>
                 </ControlTemplate>

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Markup;
@@ -16,8 +15,6 @@ namespace MaterialDesign_WPF_Expander
         private Image _expanderIcon;
         private Border _expanderBorder;
         private TextBlock _expanderHeader;
-        private Grid _expanderGrid;
-        private Grid _contentGrid;
         private ContentPresenter _contentPresenter;
 
         public string ExpanderGroup
@@ -57,7 +54,7 @@ namespace MaterialDesign_WPF_Expander
 
         public bool ExpanderOnlyOneOpenedObject
         {
-            get => (bool) GetValue(ExpanderOnlyOneOpenedObjectProperty);
+            get => (bool)GetValue(ExpanderOnlyOneOpenedObjectProperty);
             set => SetValue(ExpanderOnlyOneOpenedObjectProperty, value);
         }
 
@@ -72,7 +69,7 @@ namespace MaterialDesign_WPF_Expander
 
         public bool ExpanderIconIsVisible
         {
-            get => (bool) GetValue(ExpanderIconIsVisibleProperty);
+            get => (bool)GetValue(ExpanderIconIsVisibleProperty);
             set => SetValue(ExpanderIconIsVisibleProperty, value);
         }
 
@@ -87,10 +84,10 @@ namespace MaterialDesign_WPF_Expander
 
         public bool ExpanderIsOpened
         {
-            get => (bool) GetValue(ExpanderIsOpenedProperty);
+            get => (bool)GetValue(ExpanderIsOpenedProperty);
             set
             {
-                Storyboard.SetTargetName(_expanderGrid, _expanderGrid.Name);
+                Storyboard.SetTargetName(_expanderBorder, _expanderBorder.Name);
 
                 if (value)
                 {
@@ -98,8 +95,13 @@ namespace MaterialDesign_WPF_Expander
 
                     DoubleAnimation doubleAnimation = new DoubleAnimation
                     {
-                        To = _expanderGrid.ActualHeight,
-                        From = _expanderHeader.ActualHeight,
+                        To = _expanderBorder.BorderThickness.Bottom +
+                             _expanderBorder.Padding.Bottom +
+                             _expanderHeader.ActualHeight +
+                             _contentPresenter.ActualHeight,
+                        From = _expanderBorder.BorderThickness.Bottom +
+                               _expanderBorder.Padding.Bottom +
+                               _expanderHeader.ActualHeight,
                         Duration = new Duration(TimeSpan.FromMilliseconds(OpenAnimationDuration)),
                     };
 
@@ -109,19 +111,22 @@ namespace MaterialDesign_WPF_Expander
                     );
                     Storyboard storyboard = new Storyboard();
                     storyboard.Children.Add(doubleAnimation);
+                    storyboard.FillBehavior = FillBehavior.Stop;
                     storyboard.Completed += (sender, args) =>
                     {
                         _expanderIcon.Source =
                             Application.Current.Resources["MinusIcon"] as ImageSource;
                     };
-                    storyboard.Begin(_expanderGrid);
+                    storyboard.Begin(_expanderBorder);
                 }
                 else
                 {
                     DoubleAnimation doubleAnimation = new DoubleAnimation
                     {
-                        To = _expanderHeader.ActualHeight,
-                        From = _expanderGrid.ActualHeight,
+                        To = _expanderBorder.BorderThickness.Bottom +
+                             _expanderBorder.Padding.Bottom +
+                             _expanderHeader.ActualHeight,
+                        From = _expanderBorder.ActualHeight,
                         Duration = new Duration(TimeSpan.FromMilliseconds(OpenAnimationDuration))
                     };
 
@@ -131,13 +136,14 @@ namespace MaterialDesign_WPF_Expander
                     );
                     Storyboard storyboard = new Storyboard();
                     storyboard.Children.Add(doubleAnimation);
+                    storyboard.FillBehavior = FillBehavior.Stop;
                     storyboard.Completed += (sender, args) =>
                     {
                         _expanderIcon.Source =
                             Application.Current.Resources["PlusIcon"] as ImageSource;
                         SetValue(ExpanderIsOpenedProperty, false);
                     };
-                    storyboard.Begin(_expanderGrid);
+                    storyboard.Begin(_expanderBorder);
                 }
             }
         }
@@ -152,7 +158,7 @@ namespace MaterialDesign_WPF_Expander
 
         public int OpenAnimationDuration
         {
-            get { return (int) GetValue(OpenAnimationDurationProperty); }
+            get { return (int)GetValue(OpenAnimationDurationProperty); }
             set { SetValue(OpenAnimationDurationProperty, value); }
         }
 
@@ -164,7 +170,7 @@ namespace MaterialDesign_WPF_Expander
 
         public double ExpanderIconZoom
         {
-            get => (double) GetValue(ExpanderIconZoomProperty);
+            get => (double)GetValue(ExpanderIconZoomProperty);
             set => SetValue(ExpanderIconZoomProperty, value);
         }
 
@@ -175,25 +181,26 @@ namespace MaterialDesign_WPF_Expander
         private void InitExpanderIsOpenedIcon()
         {
             _expanderIcon.Source = ExpanderIsOpened
-                ? (ImageSource) Application.Current.Resources["MinusIcon"]
-                : (ImageSource) Application.Current.Resources["PlusIcon"];
+                ? (ImageSource)Application.Current.Resources["MinusIcon"]
+                : (ImageSource)Application.Current.Resources["PlusIcon"];
         }
 
         private void InitExpanderHeightByIsOpened()
         {
             if (!ExpanderIsOpened)
             {
-                _expanderGrid.Height = _expanderHeader.ActualHeight;
+                _expanderBorder.Height =
+                    _expanderHeader.ActualHeight +
+                    _expanderBorder.Padding.Bottom +
+                    _expanderBorder.BorderThickness.Bottom;
             }
         }
 
         private void AssignElements()
         {
             _expanderBorder = GetTemplateChild("ExpanderBorder") as Border;
-            _expanderGrid = GetTemplateChild("ExpanderGrid") as Grid;
             _expanderIcon = GetTemplateChild("ExpanderIcon") as Image;
             _expanderHeader = GetTemplateChild("ExpanderHeader") as TextBlock;
-            _contentGrid = GetTemplateChild("ContentGrid") as Grid;
             _contentPresenter = GetTemplateChild("ContentPresenter") as ContentPresenter;
         }
 
@@ -209,6 +216,28 @@ namespace MaterialDesign_WPF_Expander
             };
         }
 
+        private void ProcessExpanderResize()
+        {
+            _expanderBorder.SizeChanged += (o, eventArgs) =>
+            {
+                if (ExpanderIsOpened)
+                {
+                    _expanderBorder.Height =
+                        _expanderBorder.BorderThickness.Bottom +
+                        _expanderBorder.Padding.Bottom +
+                        _expanderHeader.ActualHeight +
+                        _contentPresenter.ActualHeight;
+                }
+                else
+                {
+                    _expanderBorder.Height =
+                        _expanderHeader.ActualHeight +
+                        _expanderBorder.Padding.Bottom +
+                        _expanderBorder.BorderThickness.Bottom;
+                }
+            };
+        }
+
         private void ProcessElementLoaded()
         {
             Loaded += (s, e) =>
@@ -216,6 +245,7 @@ namespace MaterialDesign_WPF_Expander
                 InitExpanderIsOpenedIcon();
                 InitExpanderHeightByIsOpened();
                 InitExpanderOnClickHandler();
+                ProcessExpanderResize();
             };
         }
 
@@ -227,7 +257,7 @@ namespace MaterialDesign_WPF_Expander
 
         public double ExpanderBottomBorderThickness
         {
-            get { return (double) GetValue(ExpanderBottomBorderThicknessProperty); }
+            get { return (double)GetValue(ExpanderBottomBorderThicknessProperty); }
             set
             {
                 SetValue(ExpanderBottomBorderThicknessProperty, value);
@@ -247,7 +277,7 @@ namespace MaterialDesign_WPF_Expander
 
         public bool ExpanderBottomBorderIsVisible
         {
-            get { return (bool) GetValue(ExpanderBottomBorderIsVisibleProperty); }
+            get { return (bool)GetValue(ExpanderBottomBorderIsVisibleProperty); }
             set
             {
                 SetValue(ExpanderBottomBorderIsVisibleProperty, value);
