@@ -54,7 +54,8 @@
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 ExpanderIsOpened="True"
-                FontFamily="Segoe UI Light">
+                FontFamily="Segoe UI Light"
+                FontSize="26">
                 <Grid>
                     <TextBlock
                         Width="{Binding ElementName=EasyIntegrationExpander, Path=Width}"

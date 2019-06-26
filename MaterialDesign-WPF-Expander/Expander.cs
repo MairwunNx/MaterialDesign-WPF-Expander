@@ -2,7 +2,6 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Markup;
-using System.Windows.Media;
 using System.Windows.Media.Animation;
 
 #pragma warning disable 1591
@@ -112,11 +111,6 @@ namespace MaterialDesign_WPF_Expander
                     Storyboard storyboard = new Storyboard();
                     storyboard.Children.Add(doubleAnimation);
                     storyboard.FillBehavior = FillBehavior.Stop;
-                    storyboard.Completed += (sender, args) =>
-                    {
-                        _expanderIcon.Source =
-                            Application.Current.Resources["MinusIcon"] as ImageSource;
-                    };
                     storyboard.Begin(_expanderBorder);
                 }
                 else
@@ -139,8 +133,6 @@ namespace MaterialDesign_WPF_Expander
                     storyboard.FillBehavior = FillBehavior.Stop;
                     storyboard.Completed += (sender, args) =>
                     {
-                        _expanderIcon.Source =
-                            Application.Current.Resources["PlusIcon"] as ImageSource;
                         SetValue(ExpanderIsOpenedProperty, false);
                     };
                     storyboard.Begin(_expanderBorder);
@@ -177,13 +169,6 @@ namespace MaterialDesign_WPF_Expander
         public static readonly DependencyProperty ExpanderIconZoomProperty =
             DependencyProperty.Register(nameof(ExpanderIconZoom), typeof(double), typeof(Expander),
                 new PropertyMetadata(0.7));
-
-        private void InitExpanderIsOpenedIcon()
-        {
-            _expanderIcon.Source = ExpanderIsOpened
-                ? (ImageSource)Application.Current.Resources["MinusIcon"]
-                : (ImageSource)Application.Current.Resources["PlusIcon"];
-        }
 
         private void InitExpanderHeightByIsOpened()
         {
@@ -242,7 +227,6 @@ namespace MaterialDesign_WPF_Expander
         {
             Loaded += (s, e) =>
             {
-                InitExpanderIsOpenedIcon();
                 InitExpanderHeightByIsOpened();
                 InitExpanderOnClickHandler();
                 ProcessExpanderResize();
