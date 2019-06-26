@@ -14,8 +14,11 @@
     <converters:BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
     <converters:BooleanToExpanderIconConverter x:Key="BoolToExpanderIconConverter" />
     <Style TargetType="{x:Type local:Expander}">
-        <Setter Property="FontFamily" Value="Segoe UI Light" />
+        <Setter Property="FontFamily" Value="Segoe UI" />
+        <Setter Property="FontStyle" Value="Normal" />
+        <Setter Property="FontWeight" Value="Light" />
         <Setter Property="FontSize" Value="24" />
+        <Setter Property="BorderThickness" Value="0,0,0,1" />
         <Setter Property="Padding" Value="0,0,18,24" />
         <Setter Property="Template">
             <Setter.Value>
@@ -26,7 +29,7 @@
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"
                         BorderBrush="{DynamicResource Ex-BottomBorderFill-Brush}"
-                        BorderThickness="0,0,0,1">
+                        BorderThickness="{TemplateBinding BorderThickness}">
                         <Border.DataContext>
                             <local:Expander />
                         </Border.DataContext>
@@ -76,6 +79,9 @@
                                 Cursor="Hand"
                                 FontFamily="{TemplateBinding FontFamily}"
                                 FontSize="{TemplateBinding FontSize}"
+                                FontStretch="{TemplateBinding FontStretch}"
+                                FontStyle="{TemplateBinding FontStyle}"
+                                FontWeight="{TemplateBinding FontWeight}"
                                 Text="{TemplateBinding Title}"
                                 TextWrapping="WrapWithOverflow">
                                 <TextBlock.Style>
