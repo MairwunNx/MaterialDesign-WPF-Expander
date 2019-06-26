@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Markup;
@@ -22,6 +23,7 @@ namespace MaterialDesign_WPF_Expander
             set => SetValue(ExpanderGroupProperty, value);
         }
 
+        [Category("Common")]
         public object Content
         {
             get { return GetValue(ContentProperty); }
@@ -31,6 +33,7 @@ namespace MaterialDesign_WPF_Expander
         public static readonly DependencyProperty ContentProperty =
             DependencyProperty.Register(nameof(Content), typeof(object), typeof(Expander), null);
 
+        [Category("Common")]
         public string Title
         {
             get { return GetValue(TitleProperty) as string; }
@@ -65,13 +68,14 @@ namespace MaterialDesign_WPF_Expander
                 new PropertyMetadata(true)
             );
 
-
+        [Category("Appearance")]
         public bool ExpanderIconIsVisible
         {
             get => (bool)GetValue(ExpanderIconIsVisibleProperty);
             set => SetValue(ExpanderIconIsVisibleProperty, value);
         }
 
+        [Category("Layout")]
         public HorizontalAlignment HeaderHorizontalAlignment
         {
             get { return (HorizontalAlignment)GetValue(HeaderHorizontalAlignmentProperty); }
@@ -90,6 +94,7 @@ namespace MaterialDesign_WPF_Expander
                 new PropertyMetadata(true)
             );
 
+        [Category("Common")]
         public bool ExpanderIsOpened
         {
             get => (bool)GetValue(ExpanderIsOpenedProperty);
@@ -149,6 +154,7 @@ namespace MaterialDesign_WPF_Expander
             }
         }
 
+        [Category("Appearance")]
         public CornerRadius ExpanderCornerRadius
         {
             get { return (CornerRadius)GetValue(ExpanderCornerRadiusProperty); }
@@ -169,6 +175,7 @@ namespace MaterialDesign_WPF_Expander
                 new PropertyMetadata(false)
             );
 
+        [Category("Behavior")]
         public int OpenAnimationDuration
         {
             get { return (int)GetValue(OpenAnimationDurationProperty); }
@@ -180,7 +187,7 @@ namespace MaterialDesign_WPF_Expander
             DependencyProperty.Register(nameof(OpenAnimationDuration), typeof(int),
                 typeof(Expander), new PropertyMetadata(200));
 
-
+        [Category("Appearance")]
         public double ExpanderIconZoom
         {
             get => (double)GetValue(ExpanderIconZoomProperty);

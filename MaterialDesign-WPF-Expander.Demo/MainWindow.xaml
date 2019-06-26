@@ -57,8 +57,7 @@
                 Margin="25,0,0,0"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
-                ExpanderIsOpened="True"
-                FontSize="26">
+                FontSize="26" Padding="0,0,18,24" ExpanderIsOpened="True">
                 <Grid>
                     <TextBlock
                         Width="{Binding ElementName=EasyIntegrationExpander, Path=Width}"
