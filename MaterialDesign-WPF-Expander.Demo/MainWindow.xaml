@@ -36,7 +36,7 @@
                     <TextBlock
                         Width="{Binding ElementName=PrivacyExpander, Path=Width}"
                         MaxWidth="880"
-                        Padding="40,0,0,0"
+                        Padding="40,15,15,15"
                         FontFamily="Roboto Light"
                         FontSize="14"
                         Foreground="{DynamicResource Ex-HeaderForeground-Brush}"
@@ -57,7 +57,7 @@
                     <TextBlock
                         Width="{Binding ElementName=EasyIntegrationExpander, Path=Width}"
                         MaxWidth="880"
-                        Padding="40,0,0,0"
+                        Padding="40,15,15,15"
                         FontFamily="Roboto Light"
                         FontSize="14"
                         Foreground="{DynamicResource Ex-HeaderForeground-Brush}"

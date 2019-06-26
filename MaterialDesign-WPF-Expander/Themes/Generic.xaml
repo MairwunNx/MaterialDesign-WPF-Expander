@@ -90,7 +90,6 @@
                                 Grid.Row="1"
                                 Grid.Column="0"
                                 Grid.ColumnSpan="2"
-                                Margin="0,15,0,0"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top"
                                 Visibility="{TemplateBinding Property=ExpanderIsOpened,
