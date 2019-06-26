@@ -13,6 +13,7 @@
     </ResourceDictionary.MergedDictionaries>
     <converters:BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
     <converters:BooleanToExpanderIconConverter x:Key="BoolToExpanderIconConverter" />
+    <converters:IsDisabledToOpacityConverter x:Key="IsDisabledToOpacityConverter" />
     <Style TargetType="{x:Type local:Expander}">
         <Setter Property="FontFamily" Value="Segoe UI" />
         <Setter Property="FontStyle" Value="Normal" />
@@ -29,7 +30,10 @@
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"
                         BorderBrush="{DynamicResource Ex-BottomBorderFill-Brush}"
-                        BorderThickness="{TemplateBinding BorderThickness}">
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        IsEnabled="{TemplateBinding IsEnabled}"
+                        Opacity="{TemplateBinding Property=IsEnabled,
+                                                  Converter={StaticResource IsDisabledToOpacityConverter}}">
                         <Border.DataContext>
                             <local:Expander />
                         </Border.DataContext>

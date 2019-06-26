@@ -1,30 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
-using System.Windows.Media;
-using static System.Windows.Application;
 
 namespace MaterialDesign_WPF_Expander.Converters
 {
-    /// <summary>
-    /// Convert between boolean and expander icon
-    /// </summary>
     [Localizability(LocalizationCategory.NeverLocalize)]
-    internal sealed class BooleanToExpanderIconConverter : IValueConverter
+    internal sealed class IsDisabledToOpacityConverter: IValueConverter
     {
         /// <summary>
-        /// Convert bool to expander icon
+        /// Convert is disabled to disabled opacity
         /// </summary>
         /// <param name="value">boolean value</param>
-        /// <param name="targetType">ImageSource</param>
+        /// <param name="targetType">Double</param>
         /// <param name="parameter">null</param>
         /// <param name="culture">null</param>
-        /// <returns>Minus icon or Plus icon</returns>
+        /// <returns>disabled opacity or normal opacity</returns>
         public object Convert(
             object value,
             Type targetType,
@@ -33,8 +24,8 @@ namespace MaterialDesign_WPF_Expander.Converters
         )
         {
             return value is bool boolean && boolean
-                ? (ImageSource)Current.Resources["MinusIcon"]
-                : (ImageSource)Current.Resources["PlusIcon"];
+                ? 1.0
+                : 0.6;
         }
 
         public object ConvertBack(

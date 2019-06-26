@@ -35,7 +35,8 @@
                 VerticalAlignment="Top"
                 BorderThickness="0,0,0,5"
                 FontFamily="Roboto"
-                HeaderHorizontalAlignment="Center">
+                HeaderHorizontalAlignment="Center"
+                IsEnabled="False">
                 <Grid>
                     <TextBlock
                         Width="{Binding ElementName=PrivacyExpander, Path=Width}"
