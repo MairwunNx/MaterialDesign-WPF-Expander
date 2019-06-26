@@ -149,6 +149,18 @@ namespace MaterialDesign_WPF_Expander
             }
         }
 
+        public CornerRadius ExpanderCornerRadius
+        {
+            get { return (CornerRadius)GetValue(ExpanderCornerRadiusProperty); }
+            set { SetValue(ExpanderCornerRadiusProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for ExpanderCornerRadius.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ExpanderCornerRadiusProperty =
+            DependencyProperty.Register("ExpanderCornerRadius", typeof(CornerRadius), typeof(Expander), new PropertyMetadata(new CornerRadius(0)));
+
+
+
         public static readonly DependencyProperty ExpanderIsOpenedProperty =
             DependencyProperty.Register(
                 nameof(ExpanderIsOpened),

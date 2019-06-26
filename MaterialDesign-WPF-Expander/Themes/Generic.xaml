@@ -31,6 +31,7 @@
                         VerticalAlignment="Top"
                         BorderBrush="{DynamicResource Ex-BottomBorderFill-Brush}"
                         BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="{TemplateBinding ExpanderCornerRadius}"
                         IsEnabled="{TemplateBinding IsEnabled}"
                         Opacity="{TemplateBinding Property=IsEnabled,
                                                   Converter={StaticResource IsDisabledToOpacityConverter}}">
