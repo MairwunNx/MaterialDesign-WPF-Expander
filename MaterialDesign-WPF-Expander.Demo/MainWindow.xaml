@@ -32,7 +32,8 @@
                 Margin="25,20,0,35"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
-                FontFamily="Roboto Light">
+                FontFamily="Roboto Light"
+                HeaderHorizontalAlignment="Center">
                 <Grid>
                     <TextBlock
                         Width="{Binding ElementName=PrivacyExpander, Path=Width}"

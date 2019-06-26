@@ -72,6 +72,15 @@ namespace MaterialDesign_WPF_Expander
             set => SetValue(ExpanderIconIsVisibleProperty, value);
         }
 
+        public HorizontalAlignment HeaderHorizontalAlignment
+        {
+            get { return (HorizontalAlignment)GetValue(HeaderHorizontalAlignmentProperty); }
+            set { SetValue(HeaderHorizontalAlignmentProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for HeaderHorizontalAlignment.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty HeaderHorizontalAlignmentProperty =
+            DependencyProperty.Register("HeaderHorizontalAlignment", typeof(HorizontalAlignment), typeof(Expander), new PropertyMetadata(HorizontalAlignment.Left));
 
         public static readonly DependencyProperty ExpanderIconIsVisibleProperty =
             DependencyProperty.Register(
