@@ -31,7 +31,8 @@
                 MaxWidth="880"
                 Margin="25,20,0,35"
                 HorizontalAlignment="Left"
-                VerticalAlignment="Top">
+                VerticalAlignment="Top"
+                FontFamily="Roboto Light">
                 <Grid>
                     <TextBlock
                         Width="{Binding ElementName=PrivacyExpander, Path=Width}"
@@ -52,7 +53,8 @@
                 Margin="25,0,0,0"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
-                ExpanderIsOpened="True">
+                ExpanderIsOpened="True"
+                FontFamily="Segoe UI Light">
                 <Grid>
                     <TextBlock
                         Width="{Binding ElementName=EasyIntegrationExpander, Path=Width}"

@@ -69,7 +69,7 @@
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top"
                                 Cursor="Hand"
-                                FontFamily="Roboto Light"
+                                FontFamily="{TemplateBinding FontFamily}"
                                 FontSize="24"
                                 Text="{TemplateBinding Title}"
                                 TextWrapping="WrapWithOverflow">
