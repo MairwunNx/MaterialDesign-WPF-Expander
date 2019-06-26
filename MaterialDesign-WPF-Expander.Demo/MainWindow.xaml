@@ -54,7 +54,6 @@
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 ExpanderIsOpened="True"
-                FontFamily="Segoe UI Light"
                 FontSize="26">
                 <Grid>
                     <TextBlock

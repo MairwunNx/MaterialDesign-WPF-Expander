@@ -14,6 +14,8 @@
     <converters:BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
     <converters:BooleanToExpanderIconConverter x:Key="BoolToExpanderIconConverter" />
     <Style TargetType="{x:Type local:Expander}">
+        <Setter Property="FontFamily" Value="Segoe UI Light" />
+        <Setter Property="FontSize" Value="24" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:Expander}">
