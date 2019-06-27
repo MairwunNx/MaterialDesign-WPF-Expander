@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Media;
@@ -33,8 +29,8 @@ namespace MaterialDesign_WPF_Expander.Converters
         )
         {
             return value is bool boolean && boolean
-                ? (ImageSource)Current.Resources["MinusIcon"]
-                : (ImageSource)Current.Resources["PlusIcon"];
+                ? Current.Resources["MinusIcon"] as ImageSource
+                : Current.Resources["PlusIcon"] as ImageSource;
         }
 
         public object ConvertBack(
