@@ -7,7 +7,7 @@
     xmlns:mdex="clr-namespace:MaterialDesign_WPF_Expander;assembly=MaterialDesign-WPF-Expander"
     Title="MainWindow"
     Width="886"
-    Height="565"
+    Height="513.667"
     mc:Ignorable="d">
     <Grid Background="{DynamicResource Ex-Background-Brush}">
         <Grid.RowDefinitions>
@@ -55,9 +55,11 @@
                 Title="Easy integration with top website builders"
                 MaxWidth="880"
                 Margin="25,0,0,0"
+                Padding="0,0,18,24"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
-                FontSize="26" Padding="0,0,18,24" IsOpened="True">
+                FontSize="26"
+                IsOpened="True">
                 <Grid>
                     <TextBlock
                         Width="{Binding ElementName=EasyIntegrationExpander, Path=Width}"
@@ -70,33 +72,6 @@
                         TextWrapping="WrapWithOverflow" />
                 </Grid>
             </mdex:Expander>
-
-            <WrapPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                <ToggleButton
-                    x:Name="DisableBorderToggleButton"
-                    Margin="35,35,35,0"
-                    HorizontalAlignment="Left"
-                    Content="Disable Border"
-                    IsChecked="False" />
-                <ToggleButton
-                    x:Name="SwitchIsOpenToggleButton"
-                    Margin="35,35,35,0"
-                    HorizontalAlignment="Left"
-                    Click="SwitchIsOpenToggleButton_Click"
-                    Content="Switch Is Open"
-                    IsChecked="False" />
-                <ToggleButton
-                    x:Name="SwitchBorderThickness"
-                    Margin="35,35,35,0"
-                    HorizontalAlignment="Left"
-                    Content="Switch Border Thickness"
-                    IsChecked="False" />
-                <ToggleButton
-                    Margin="35,35,35,0"
-                    HorizontalAlignment="Left"
-                    Content="Switch Theme"
-                    IsChecked="False" />
-            </WrapPanel>
         </StackPanel>
     </Grid>
 </Window>
