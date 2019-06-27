@@ -17,6 +17,14 @@ namespace MaterialDesign_WPF_Expander
         private TextBlock _expanderHeader;
         private ContentPresenter _contentPresenter;
 
+        static Expander()
+        {
+            DefaultStyleKeyProperty.OverrideMetadata(
+                typeof(Expander),
+                new FrameworkPropertyMetadata(typeof(Expander))
+            );
+        }
+
         public string ExpanderGroup
         {
             get => GetValue(ExpanderGroupProperty) as string;
@@ -26,25 +34,32 @@ namespace MaterialDesign_WPF_Expander
         [Category("Common")]
         public object Content
         {
-            get { return GetValue(ContentProperty); }
-            set { SetValue(ContentProperty, value); }
+            get => GetValue(ContentProperty);
+            set => SetValue(ContentProperty, value);
         }
 
         public static readonly DependencyProperty ContentProperty =
-            DependencyProperty.Register(nameof(Content), typeof(object), typeof(Expander), null);
+            DependencyProperty.Register(
+                nameof(Content),
+                typeof(object),
+                typeof(Expander),
+                null
+            );
 
         [Category("Common")]
         public string Title
         {
-            get { return GetValue(TitleProperty) as string; }
-            set { SetValue(TitleProperty, value); }
+            get => GetValue(TitleProperty) as string;
+            set => SetValue(TitleProperty, value);
         }
 
-        // Using a DependencyProperty as the backing store for Title.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty TitleProperty =
-            DependencyProperty.Register(nameof(Title), typeof(string), typeof(Expander),
-                new PropertyMetadata("Expander"));
-
+            DependencyProperty.Register(
+                nameof(Title),
+                typeof(string),
+                typeof(Expander),
+                new PropertyMetadata("Expander")
+            );
 
         public static readonly DependencyProperty ExpanderGroupProperty =
             DependencyProperty.Register(
@@ -56,7 +71,7 @@ namespace MaterialDesign_WPF_Expander
 
         public bool ExpanderOnlyOneOpenedObject
         {
-            get => (bool)GetValue(ExpanderOnlyOneOpenedObjectProperty);
+            get => (bool) GetValue(ExpanderOnlyOneOpenedObjectProperty);
             set => SetValue(ExpanderOnlyOneOpenedObjectProperty, value);
         }
 
@@ -71,20 +86,9 @@ namespace MaterialDesign_WPF_Expander
         [Category("Appearance")]
         public bool ExpanderIconIsVisible
         {
-            get => (bool)GetValue(ExpanderIconIsVisibleProperty);
+            get => (bool) GetValue(ExpanderIconIsVisibleProperty);
             set => SetValue(ExpanderIconIsVisibleProperty, value);
         }
-
-        [Category("Layout")]
-        public HorizontalAlignment HeaderHorizontalAlignment
-        {
-            get { return (HorizontalAlignment)GetValue(HeaderHorizontalAlignmentProperty); }
-            set { SetValue(HeaderHorizontalAlignmentProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for HeaderHorizontalAlignment.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty HeaderHorizontalAlignmentProperty =
-            DependencyProperty.Register("HeaderHorizontalAlignment", typeof(HorizontalAlignment), typeof(Expander), new PropertyMetadata(HorizontalAlignment.Left));
 
         public static readonly DependencyProperty ExpanderIconIsVisibleProperty =
             DependencyProperty.Register(
@@ -94,10 +98,25 @@ namespace MaterialDesign_WPF_Expander
                 new PropertyMetadata(true)
             );
 
+        [Category("Layout")]
+        public HorizontalAlignment HeaderHorizontalAlignment
+        {
+            get => (HorizontalAlignment) GetValue(HeaderHorizontalAlignmentProperty);
+            set => SetValue(HeaderHorizontalAlignmentProperty, value);
+        }
+
+        public static readonly DependencyProperty HeaderHorizontalAlignmentProperty =
+            DependencyProperty.Register(
+                nameof(HeaderHorizontalAlignment),
+                typeof(HorizontalAlignment),
+                typeof(Expander),
+                new PropertyMetadata(HorizontalAlignment.Left)
+            );
+
         [Category("Common")]
         public bool ExpanderIsOpened
         {
-            get => (bool)GetValue(ExpanderIsOpenedProperty);
+            get => (bool) GetValue(ExpanderIsOpenedProperty);
             set
             {
                 Storyboard.SetTargetName(_expanderBorder, _expanderBorder.Name);
@@ -154,19 +173,6 @@ namespace MaterialDesign_WPF_Expander
             }
         }
 
-        [Category("Appearance")]
-        public CornerRadius ExpanderCornerRadius
-        {
-            get { return (CornerRadius)GetValue(ExpanderCornerRadiusProperty); }
-            set { SetValue(ExpanderCornerRadiusProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for ExpanderCornerRadius.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty ExpanderCornerRadiusProperty =
-            DependencyProperty.Register("ExpanderCornerRadius", typeof(CornerRadius), typeof(Expander), new PropertyMetadata(new CornerRadius(0)));
-
-
-
         public static readonly DependencyProperty ExpanderIsOpenedProperty =
             DependencyProperty.Register(
                 nameof(ExpanderIsOpened),
@@ -175,28 +181,74 @@ namespace MaterialDesign_WPF_Expander
                 new PropertyMetadata(false)
             );
 
+        [Category("Appearance")]
+        public CornerRadius ExpanderCornerRadius
+        {
+            get => (CornerRadius) GetValue(ExpanderCornerRadiusProperty);
+            set => SetValue(ExpanderCornerRadiusProperty, value);
+        }
+
+        public static readonly DependencyProperty ExpanderCornerRadiusProperty =
+            DependencyProperty.Register(
+                nameof(ExpanderCornerRadius),
+                typeof(CornerRadius),
+                typeof(Expander),
+                new PropertyMetadata(new CornerRadius(0))
+            );
+
         [Category("Behavior")]
         public int OpenAnimationDuration
         {
-            get { return (int)GetValue(OpenAnimationDurationProperty); }
-            set { SetValue(OpenAnimationDurationProperty, value); }
+            get => (int) GetValue(OpenAnimationDurationProperty);
+            set => SetValue(OpenAnimationDurationProperty, value);
         }
 
-        // Using a DependencyProperty as the backing store for OpenAnimationDuration.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty OpenAnimationDurationProperty =
-            DependencyProperty.Register(nameof(OpenAnimationDuration), typeof(int),
-                typeof(Expander), new PropertyMetadata(200));
+            DependencyProperty.Register(
+                nameof(OpenAnimationDuration),
+                typeof(int),
+                typeof(Expander),
+                new PropertyMetadata(200)
+            );
 
         [Category("Appearance")]
         public double ExpanderIconZoom
         {
-            get => (double)GetValue(ExpanderIconZoomProperty);
+            get => (double) GetValue(ExpanderIconZoomProperty);
             set => SetValue(ExpanderIconZoomProperty, value);
         }
 
         public static readonly DependencyProperty ExpanderIconZoomProperty =
-            DependencyProperty.Register(nameof(ExpanderIconZoom), typeof(double), typeof(Expander),
-                new PropertyMetadata(0.7));
+            DependencyProperty.Register(
+                nameof(ExpanderIconZoom),
+                typeof(double),
+                typeof(Expander),
+                new PropertyMetadata(0.7)
+            );
+        
+        public override void OnApplyTemplate()
+        {
+            AssignElements();
+            ProcessElementLoaded();
+        }
+
+        private void AssignElements()
+        {
+            _expanderBorder = GetTemplateChild("ExpanderBorder") as Border;
+            _expanderIcon = GetTemplateChild("ExpanderIcon") as Image;
+            _expanderHeader = GetTemplateChild("ExpanderHeader") as TextBlock;
+            _contentPresenter = GetTemplateChild("ContentPresenter") as ContentPresenter;
+        }
+
+        private void ProcessElementLoaded()
+        {
+            Loaded += (s, e) =>
+            {
+                InitExpanderHeightByIsOpened();
+                InitExpanderOnClickHandler();
+                ProcessExpanderResize();
+            };
+        }
 
         private void InitExpanderHeightByIsOpened()
         {
@@ -209,26 +261,12 @@ namespace MaterialDesign_WPF_Expander
             }
         }
 
-        private void AssignElements()
-        {
-            _expanderBorder = GetTemplateChild("ExpanderBorder") as Border;
-            _expanderIcon = GetTemplateChild("ExpanderIcon") as Image;
-            _expanderHeader = GetTemplateChild("ExpanderHeader") as TextBlock;
-            _contentPresenter = GetTemplateChild("ContentPresenter") as ContentPresenter;
-        }
-
         private void InitExpanderOnClickHandler()
         {
-            _expanderHeader.MouseLeftButtonUp += (s, e) =>
-            {
-                ExpanderIsOpened = !ExpanderIsOpened;
-            };
-            _expanderIcon.MouseLeftButtonUp += (s, e) =>
-            {
-                ExpanderIsOpened = !ExpanderIsOpened;
-            };
+            _expanderHeader.MouseLeftButtonUp += (s, e) => ExpanderIsOpened = !ExpanderIsOpened;
+            _expanderIcon.MouseLeftButtonUp += (s, e) => ExpanderIsOpened = !ExpanderIsOpened;
         }
-
+        
         private void ProcessExpanderResize()
         {
             _expanderBorder.SizeChanged += (o, eventArgs) =>
@@ -249,30 +287,6 @@ namespace MaterialDesign_WPF_Expander
                         _expanderBorder.BorderThickness.Bottom;
                 }
             };
-        }
-
-        private void ProcessElementLoaded()
-        {
-            Loaded += (s, e) =>
-            {
-                InitExpanderHeightByIsOpened();
-                InitExpanderOnClickHandler();
-                ProcessExpanderResize();
-            };
-        }
-
-        public override void OnApplyTemplate()
-        {
-            AssignElements();
-            ProcessElementLoaded();
-        }
-
-        static Expander()
-        {
-            DefaultStyleKeyProperty.OverrideMetadata(
-                typeof(Expander),
-                new FrameworkPropertyMetadata(typeof(Expander))
-            );
         }
     }
 }
