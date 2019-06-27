@@ -6,7 +6,7 @@ using System.Windows.Data;
 namespace MaterialDesign_WPF_Expander.Converters
 {
     [Localizability(LocalizationCategory.NeverLocalize)]
-    internal sealed class IsDisabledToOpacityConverter: IValueConverter
+    internal sealed class IsDisabledToOpacityConverter : IValueConverter
     {
         /// <summary>
         /// Convert is disabled to disabled opacity
