@@ -9,6 +9,9 @@ using System.Windows.Media.Animation;
 
 namespace MaterialDesign_WPF_Expander
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [ContentProperty("Content")]
     public class Expander : Control
     {
@@ -16,21 +19,39 @@ namespace MaterialDesign_WPF_Expander
         private Border _expanderBorder;
         private TextBlock _expanderHeader;
         private ContentPresenter _contentPresenter;
+        private static readonly Type TypeofThis = typeof(Expander);
 
         static Expander()
         {
             DefaultStyleKeyProperty.OverrideMetadata(
-                typeof(Expander),
-                new FrameworkPropertyMetadata(typeof(Expander))
+                TypeofThis,
+                new FrameworkPropertyMetadata(TypeofThis)
             );
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public string ExpanderGroup
         {
             get => GetValue(ExpanderGroupProperty) as string;
             set => SetValue(ExpanderGroupProperty, value);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public static readonly DependencyProperty ExpanderGroupProperty =
+            DependencyProperty.Register(
+                nameof(ExpanderGroup),
+                typeof(string),
+                TypeofThis,
+                new PropertyMetadata("default")
+            );
+
+        /// <summary>
+        ///
+        /// </summary>
         [Category("Common")]
         public object Content
         {
@@ -38,14 +59,20 @@ namespace MaterialDesign_WPF_Expander
             set => SetValue(ContentProperty, value);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static readonly DependencyProperty ContentProperty =
             DependencyProperty.Register(
                 nameof(Content),
                 typeof(object),
-                typeof(Expander),
+                TypeofThis,
                 null
             );
 
+        /// <summary>
+        /// 
+        /// </summary>
         [Category("Common")]
         public string Title
         {
@@ -53,51 +80,61 @@ namespace MaterialDesign_WPF_Expander
             set => SetValue(TitleProperty, value);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static readonly DependencyProperty TitleProperty =
             DependencyProperty.Register(
                 nameof(Title),
                 typeof(string),
-                typeof(Expander),
+                TypeofThis,
                 new PropertyMetadata("Expander")
             );
 
-        public static readonly DependencyProperty ExpanderGroupProperty =
-            DependencyProperty.Register(
-                nameof(ExpanderGroup),
-                typeof(string),
-                typeof(Expander),
-                new PropertyMetadata("default")
-            );
-
+        /// <summary>
+        /// 
+        /// </summary>
         public bool ExpanderOnlyOneOpenedObject
         {
             get => (bool) GetValue(ExpanderOnlyOneOpenedObjectProperty);
             set => SetValue(ExpanderOnlyOneOpenedObjectProperty, value);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static readonly DependencyProperty ExpanderOnlyOneOpenedObjectProperty =
             DependencyProperty.Register(
                 nameof(ExpanderOnlyOneOpenedObject),
                 typeof(bool),
-                typeof(Expander),
+                TypeofThis,
                 new PropertyMetadata(true)
             );
 
+        /// <summary>
+        /// 
+        /// </summary>
         [Category("Appearance")]
-        public bool ExpanderIconIsVisible
+        public bool IconIsVisible
         {
-            get => (bool) GetValue(ExpanderIconIsVisibleProperty);
-            set => SetValue(ExpanderIconIsVisibleProperty, value);
+            get => (bool) GetValue(IconIsVisibleProperty);
+            set => SetValue(IconIsVisibleProperty, value);
         }
 
-        public static readonly DependencyProperty ExpanderIconIsVisibleProperty =
+        /// <summary>
+        /// 
+        /// </summary>
+        public static readonly DependencyProperty IconIsVisibleProperty =
             DependencyProperty.Register(
-                nameof(ExpanderIconIsVisible),
+                nameof(IconIsVisible),
                 typeof(bool),
-                typeof(Expander),
+                TypeofThis,
                 new PropertyMetadata(true)
             );
 
+        /// <summary>
+        /// 
+        /// </summary>
         [Category("Layout")]
         public HorizontalAlignment HeaderHorizontalAlignment
         {
@@ -105,25 +142,31 @@ namespace MaterialDesign_WPF_Expander
             set => SetValue(HeaderHorizontalAlignmentProperty, value);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static readonly DependencyProperty HeaderHorizontalAlignmentProperty =
             DependencyProperty.Register(
                 nameof(HeaderHorizontalAlignment),
                 typeof(HorizontalAlignment),
-                typeof(Expander),
+                TypeofThis,
                 new PropertyMetadata(HorizontalAlignment.Left)
             );
 
+        /// <summary>
+        /// 
+        /// </summary>
         [Category("Common")]
-        public bool ExpanderIsOpened
+        public bool IsOpened
         {
-            get => (bool) GetValue(ExpanderIsOpenedProperty);
+            get => (bool) GetValue(IsOpenedProperty);
             set
             {
                 Storyboard.SetTargetName(_expanderBorder, _expanderBorder.Name);
 
                 if (value)
                 {
-                    SetValue(ExpanderIsOpenedProperty, true);
+                    SetValue(IsOpenedProperty, true);
 
                     DoubleAnimation doubleAnimation = new DoubleAnimation
                     {
@@ -134,7 +177,7 @@ namespace MaterialDesign_WPF_Expander
                         From = _expanderBorder.BorderThickness.Bottom +
                                _expanderBorder.Padding.Bottom +
                                _expanderHeader.ActualHeight,
-                        Duration = new Duration(TimeSpan.FromMilliseconds(OpenAnimationDuration)),
+                        Duration = new Duration(TimeSpan.FromMilliseconds(AnimationDuration)),
                     };
 
                     Storyboard.SetTargetProperty(
@@ -154,7 +197,7 @@ namespace MaterialDesign_WPF_Expander
                              _expanderBorder.Padding.Bottom +
                              _expanderHeader.ActualHeight,
                         From = _expanderBorder.ActualHeight,
-                        Duration = new Duration(TimeSpan.FromMilliseconds(OpenAnimationDuration))
+                        Duration = new Duration(TimeSpan.FromMilliseconds(AnimationDuration))
                     };
 
                     Storyboard.SetTargetProperty(
@@ -166,66 +209,87 @@ namespace MaterialDesign_WPF_Expander
                     storyboard.FillBehavior = FillBehavior.Stop;
                     storyboard.Completed += (sender, args) =>
                     {
-                        SetValue(ExpanderIsOpenedProperty, false);
+                        SetValue(IsOpenedProperty, false);
                     };
                     storyboard.Begin(_expanderBorder);
                 }
             }
         }
 
-        public static readonly DependencyProperty ExpanderIsOpenedProperty =
+        /// <summary>
+        /// 
+        /// </summary>
+        public static readonly DependencyProperty IsOpenedProperty =
             DependencyProperty.Register(
-                nameof(ExpanderIsOpened),
+                nameof(IsOpened),
                 typeof(bool),
-                typeof(Expander),
+                TypeofThis,
                 new PropertyMetadata(false)
             );
 
+        /// <summary>
+        /// 
+        /// </summary>
         [Category("Appearance")]
-        public CornerRadius ExpanderCornerRadius
+        public CornerRadius CornerRadius
         {
-            get => (CornerRadius) GetValue(ExpanderCornerRadiusProperty);
-            set => SetValue(ExpanderCornerRadiusProperty, value);
+            get => (CornerRadius) GetValue(CornerRadiusProperty);
+            set => SetValue(CornerRadiusProperty, value);
         }
 
-        public static readonly DependencyProperty ExpanderCornerRadiusProperty =
+        /// <summary>
+        /// 
+        /// </summary>
+        public static readonly DependencyProperty CornerRadiusProperty =
             DependencyProperty.Register(
-                nameof(ExpanderCornerRadius),
+                nameof(CornerRadius),
                 typeof(CornerRadius),
-                typeof(Expander),
+                TypeofThis,
                 new PropertyMetadata(new CornerRadius(0))
             );
 
+        /// <summary>
+        /// 
+        /// </summary>
         [Category("Behavior")]
-        public int OpenAnimationDuration
+        public int AnimationDuration
         {
-            get => (int) GetValue(OpenAnimationDurationProperty);
-            set => SetValue(OpenAnimationDurationProperty, value);
+            get => (int) GetValue(AnimationDurationProperty);
+            set => SetValue(AnimationDurationProperty, value);
         }
 
-        public static readonly DependencyProperty OpenAnimationDurationProperty =
+        /// <summary>
+        /// 
+        /// </summary>
+        public static readonly DependencyProperty AnimationDurationProperty =
             DependencyProperty.Register(
-                nameof(OpenAnimationDuration),
+                nameof(AnimationDuration),
                 typeof(int),
-                typeof(Expander),
+                TypeofThis,
                 new PropertyMetadata(200)
             );
 
+        /// <summary>
+        /// 
+        /// </summary>
         [Category("Appearance")]
-        public double ExpanderIconZoom
+        public double IconZoom
         {
-            get => (double) GetValue(ExpanderIconZoomProperty);
-            set => SetValue(ExpanderIconZoomProperty, value);
+            get => (double) GetValue(IconZoomProperty);
+            set => SetValue(IconZoomProperty, value);
         }
 
-        public static readonly DependencyProperty ExpanderIconZoomProperty =
+        /// <summary>
+        /// 
+        /// </summary>
+        public static readonly DependencyProperty IconZoomProperty =
             DependencyProperty.Register(
-                nameof(ExpanderIconZoom),
+                nameof(IconZoom),
                 typeof(double),
-                typeof(Expander),
+                TypeofThis,
                 new PropertyMetadata(0.7)
             );
-        
+
         public override void OnApplyTemplate()
         {
             AssignElements();
@@ -252,7 +316,7 @@ namespace MaterialDesign_WPF_Expander
 
         private void InitExpanderHeightByIsOpened()
         {
-            if (!ExpanderIsOpened)
+            if (!IsOpened)
             {
                 _expanderBorder.Height =
                     _expanderHeader.ActualHeight +
@@ -263,15 +327,15 @@ namespace MaterialDesign_WPF_Expander
 
         private void InitExpanderOnClickHandler()
         {
-            _expanderHeader.MouseLeftButtonUp += (s, e) => ExpanderIsOpened = !ExpanderIsOpened;
-            _expanderIcon.MouseLeftButtonUp += (s, e) => ExpanderIsOpened = !ExpanderIsOpened;
+            _expanderHeader.MouseLeftButtonUp += (s, e) => IsOpened = !IsOpened;
+            _expanderIcon.MouseLeftButtonUp += (s, e) => IsOpened = !IsOpened;
         }
-        
+
         private void ProcessExpanderResize()
         {
             _expanderBorder.SizeChanged += (o, eventArgs) =>
             {
-                if (ExpanderIsOpened)
+                if (IsOpened)
                 {
                     _expanderBorder.Height =
                         _expanderBorder.BorderThickness.Bottom +

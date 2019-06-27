@@ -8,7 +8,7 @@ namespace MaterialDesign_WPF_Expander.Demo
 
         private void SwitchIsOpenToggleButton_Click(object sender, RoutedEventArgs e)
         {
-            PrivacyExpander.ExpanderIsOpened =
+            PrivacyExpander.IsOpened =
                 SwitchIsOpenToggleButton.IsChecked == true;
         }
     }

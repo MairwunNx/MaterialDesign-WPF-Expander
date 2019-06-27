@@ -31,7 +31,7 @@
                         VerticalAlignment="Top"
                         BorderBrush="{DynamicResource Ex-BottomBorderFill-Brush}"
                         BorderThickness="{TemplateBinding BorderThickness}"
-                        CornerRadius="{TemplateBinding ExpanderCornerRadius}"
+                        CornerRadius="{TemplateBinding CornerRadius}"
                         IsEnabled="{TemplateBinding IsEnabled}"
                         Opacity="{TemplateBinding Property=IsEnabled,
                                                   Converter={StaticResource IsDisabledToOpacityConverter}}">
@@ -61,14 +61,14 @@
                                 VerticalAlignment="Center"
                                 Cursor="Hand"
                                 RenderTransformOrigin="0.5,0.5"
-                                Source="{TemplateBinding Property=ExpanderIsOpened,
+                                Source="{TemplateBinding Property=IsOpened,
                                                          Converter={StaticResource BoolToExpanderIconConverter}}"
                                 Stretch="Uniform"
-                                Visibility="{TemplateBinding Property=ExpanderIconIsVisible,
+                                Visibility="{TemplateBinding Property=IconIsVisible,
                                                              Converter={StaticResource BoolToVisibilityConverter}}">
                                 <Image.RenderTransform>
                                     <TransformGroup>
-                                        <ScaleTransform ScaleX="{Binding ExpanderIconZoom, RelativeSource={RelativeSource TemplatedParent}}" ScaleY="{Binding ExpanderIconZoom, RelativeSource={RelativeSource TemplatedParent}}" />
+                                        <ScaleTransform ScaleX="{Binding IconZoom, RelativeSource={RelativeSource TemplatedParent}}" ScaleY="{Binding IconZoom, RelativeSource={RelativeSource TemplatedParent}}" />
                                     </TransformGroup>
                                 </Image.RenderTransform>
                             </Image>
@@ -108,7 +108,7 @@
                                 Grid.ColumnSpan="2"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top"
-                                Visibility="{TemplateBinding Property=ExpanderIsOpened,
+                                Visibility="{TemplateBinding Property=IsOpened,
                                                              Converter={StaticResource BoolToVisibilityConverter}}" />
                         </Grid>
                     </Border>

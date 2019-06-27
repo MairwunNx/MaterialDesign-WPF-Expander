@@ -34,7 +34,7 @@
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 BorderThickness="0,0,0,5"
-                ExpanderCornerRadius="10,10,10,10"
+                CornerRadius="10,10,10,10"
                 FontFamily="Roboto"
                 HeaderHorizontalAlignment="Center">
                 <Grid>
@@ -57,7 +57,7 @@
                 Margin="25,0,0,0"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
-                FontSize="26" Padding="0,0,18,24" ExpanderIsOpened="True">
+                FontSize="26" Padding="0,0,18,24" IsOpened="True">
                 <Grid>
                     <TextBlock
                         Width="{Binding ElementName=EasyIntegrationExpander, Path=Width}"
