@@ -5,12 +5,10 @@ using System.Windows.Controls;
 using System.Windows.Markup;
 using System.Windows.Media.Animation;
 
-#pragma warning disable 1591
-
 namespace MaterialDesign_WPF_Expander
 {
     /// <summary>
-    /// 
+    /// Base class for Material Design Expander control.
     /// </summary>
     [ContentProperty("Content")]
     public class Expander : Control
@@ -30,27 +28,7 @@ namespace MaterialDesign_WPF_Expander
         }
 
         /// <summary>
-        /// 
-        /// </summary>
-        public string ExpanderGroup
-        {
-            get => GetValue(ExpanderGroupProperty) as string;
-            set => SetValue(ExpanderGroupProperty, value);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public static readonly DependencyProperty ExpanderGroupProperty =
-            DependencyProperty.Register(
-                nameof(ExpanderGroup),
-                typeof(string),
-                TypeofThis,
-                new PropertyMetadata("default")
-            );
-
-        /// <summary>
-        ///
+        /// Represents a property to display any single element within the Expander.
         /// </summary>
         [Category("Common")]
         public object Content
@@ -60,7 +38,7 @@ namespace MaterialDesign_WPF_Expander
         }
 
         /// <summary>
-        /// 
+        /// Identifies the <see cref="Content"/> dependency property.
         /// </summary>
         public static readonly DependencyProperty ContentProperty =
             DependencyProperty.Register(
@@ -71,7 +49,7 @@ namespace MaterialDesign_WPF_Expander
             );
 
         /// <summary>
-        /// 
+        /// Represents the property that controls the Expander header.
         /// </summary>
         [Category("Common")]
         public string Title
@@ -81,38 +59,18 @@ namespace MaterialDesign_WPF_Expander
         }
 
         /// <summary>
-        /// 
+        /// Identifies the <see cref="Title"/> dependency property.
         /// </summary>
         public static readonly DependencyProperty TitleProperty =
             DependencyProperty.Register(
                 nameof(Title),
                 typeof(string),
                 TypeofThis,
-                new PropertyMetadata("Expander")
+                new PropertyMetadata("Lorem ipsum dolor sit amet")
             );
 
         /// <summary>
-        /// 
-        /// </summary>
-        public bool ExpanderOnlyOneOpenedObject
-        {
-            get => (bool) GetValue(ExpanderOnlyOneOpenedObjectProperty);
-            set => SetValue(ExpanderOnlyOneOpenedObjectProperty, value);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public static readonly DependencyProperty ExpanderOnlyOneOpenedObjectProperty =
-            DependencyProperty.Register(
-                nameof(ExpanderOnlyOneOpenedObject),
-                typeof(bool),
-                TypeofThis,
-                new PropertyMetadata(true)
-            );
-
-        /// <summary>
-        /// 
+        /// Controls the visibility of the Expander icon.
         /// </summary>
         [Category("Appearance")]
         public bool IconIsVisible
@@ -122,7 +80,7 @@ namespace MaterialDesign_WPF_Expander
         }
 
         /// <summary>
-        /// 
+        /// Identifies the <see cref="IconIsVisible"/> dependency property.
         /// </summary>
         public static readonly DependencyProperty IconIsVisibleProperty =
             DependencyProperty.Register(
@@ -133,7 +91,7 @@ namespace MaterialDesign_WPF_Expander
             );
 
         /// <summary>
-        /// 
+        /// Controls the horizontal position of the header in Expander.
         /// </summary>
         [Category("Layout")]
         public HorizontalAlignment HeaderHorizontalAlignment
@@ -143,7 +101,7 @@ namespace MaterialDesign_WPF_Expander
         }
 
         /// <summary>
-        /// 
+        /// Identifies the <see cref="HeaderHorizontalAlignment"/> dependency property.
         /// </summary>
         public static readonly DependencyProperty HeaderHorizontalAlignmentProperty =
             DependencyProperty.Register(
@@ -154,7 +112,7 @@ namespace MaterialDesign_WPF_Expander
             );
 
         /// <summary>
-        /// 
+        /// Gets or sets whether the <see cref="Expander" /> is opened.
         /// </summary>
         [Category("Common")]
         public bool IsOpened
@@ -217,7 +175,7 @@ namespace MaterialDesign_WPF_Expander
         }
 
         /// <summary>
-        /// 
+        /// Identifies the <see cref="IsOpened"/> dependency property.
         /// </summary>
         public static readonly DependencyProperty IsOpenedProperty =
             DependencyProperty.Register(
@@ -228,7 +186,7 @@ namespace MaterialDesign_WPF_Expander
             );
 
         /// <summary>
-        /// 
+        /// Controls corner radius for Expander Border.
         /// </summary>
         [Category("Appearance")]
         public CornerRadius CornerRadius
@@ -238,7 +196,7 @@ namespace MaterialDesign_WPF_Expander
         }
 
         /// <summary>
-        /// 
+        /// Identifies the <see cref="CornerRadius"/> dependency property.
         /// </summary>
         public static readonly DependencyProperty CornerRadiusProperty =
             DependencyProperty.Register(
@@ -249,7 +207,7 @@ namespace MaterialDesign_WPF_Expander
             );
 
         /// <summary>
-        /// 
+        /// Controls the duration of the Expander Opening / Closing Animation.
         /// </summary>
         [Category("Behavior")]
         public int AnimationDuration
@@ -259,7 +217,7 @@ namespace MaterialDesign_WPF_Expander
         }
 
         /// <summary>
-        /// 
+        /// Identifies the <see cref="AnimationDuration"/> dependency property.
         /// </summary>
         public static readonly DependencyProperty AnimationDurationProperty =
             DependencyProperty.Register(
@@ -270,7 +228,7 @@ namespace MaterialDesign_WPF_Expander
             );
 
         /// <summary>
-        /// 
+        /// Controls the scale of the Expander Icon.
         /// </summary>
         [Category("Appearance")]
         public double IconZoom
@@ -280,7 +238,7 @@ namespace MaterialDesign_WPF_Expander
         }
 
         /// <summary>
-        /// 
+        /// Identifies the <see cref="IconZoom"/> dependency property.
         /// </summary>
         public static readonly DependencyProperty IconZoomProperty =
             DependencyProperty.Register(
@@ -290,6 +248,7 @@ namespace MaterialDesign_WPF_Expander
                 new PropertyMetadata(0.7)
             );
 
+        /// <inheritdoc />
         public override void OnApplyTemplate()
         {
             AssignElements();
