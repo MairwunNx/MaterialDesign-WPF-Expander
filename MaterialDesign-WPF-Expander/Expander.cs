@@ -248,6 +248,20 @@ namespace MaterialDesign_WPF_Expander
                 new PropertyMetadata(FontStretches.Normal)
             );
 
+        public FontStyle HeaderFontStyle
+        {
+            get => (FontStyle)GetValue(HeaderFontStyleProperty);
+            set => SetValue(HeaderFontStyleProperty, value);
+        }
+
+        public static readonly DependencyProperty HeaderFontStyleProperty =
+            DependencyProperty.Register(
+                nameof(HeaderFontStyle),
+                typeof(FontStyle),
+                TypeofThis,
+                new PropertyMetadata(FontStyles.Normal)
+            );
+
         /// <summary>
         /// Controls corner radius for Expander Border.
         /// </summary>
