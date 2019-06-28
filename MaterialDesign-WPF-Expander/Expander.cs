@@ -191,6 +191,7 @@ namespace MaterialDesign_WPF_Expander
         /// <summary>
         /// 
         /// </summary>
+        [Category("Text Appearance")]
         public FontFamily HeaderFontFamily
         {
             get => GetValue(HeaderFontFamilyProperty) as FontFamily;
@@ -211,6 +212,7 @@ namespace MaterialDesign_WPF_Expander
         /// <summary>
         /// 
         /// </summary>
+        [Category("Text Appearance")]
         public double HeaderFontSize
         {
             get => (double)GetValue(HeaderFontSizeProperty);
@@ -231,6 +233,7 @@ namespace MaterialDesign_WPF_Expander
         /// <summary>
         /// 
         /// </summary>
+        [Category("Text Appearance")]
         public FontStretch HeaderFontStretch
         {
             get => (FontStretch)GetValue(HeaderFontStretchProperty);
@@ -251,6 +254,7 @@ namespace MaterialDesign_WPF_Expander
         /// <summary>
         /// 
         /// </summary>
+        [Category("Text Appearance")]
         public FontStyle HeaderFontStyle
         {
             get => (FontStyle)GetValue(HeaderFontStyleProperty);
@@ -271,6 +275,7 @@ namespace MaterialDesign_WPF_Expander
         /// <summary>
         /// 
         /// </summary>
+        [Category("Text Appearance")]
         public FontWeight HeaderFontWeight
         {
             get => (FontWeight)GetValue(HeaderFontWeightProperty);
