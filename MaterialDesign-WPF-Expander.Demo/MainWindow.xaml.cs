@@ -1,6 +1,4 @@
-﻿using System.Windows;
-
-namespace MaterialDesign_WPF_Expander.Demo
+﻿namespace MaterialDesign_WPF_Expander.Demo
 {
     public partial class MainWindow
     {

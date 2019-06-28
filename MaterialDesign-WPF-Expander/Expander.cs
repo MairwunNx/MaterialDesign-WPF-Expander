@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Markup;
+using System.Windows.Media;
 using System.Windows.Media.Animation;
 
 namespace MaterialDesign_WPF_Expander
@@ -13,6 +14,8 @@ namespace MaterialDesign_WPF_Expander
     [ContentProperty("Content")]
     public class Expander : Control
     {
+        private const string DefaultHeaderFontName = "Segoe Ui";
+        private const double DefaultHeaderFontSize = 24.0D;
         private Image _expanderIcon;
         private Border _expanderBorder;
         private TextBlock _expanderHeader;
@@ -75,7 +78,7 @@ namespace MaterialDesign_WPF_Expander
         [Category("Appearance")]
         public bool IconIsVisible
         {
-            get => (bool) GetValue(IconIsVisibleProperty);
+            get => (bool)GetValue(IconIsVisibleProperty);
             set => SetValue(IconIsVisibleProperty, value);
         }
 
@@ -96,7 +99,7 @@ namespace MaterialDesign_WPF_Expander
         [Category("Layout")]
         public HorizontalAlignment HeaderHorizontalAlignment
         {
-            get => (HorizontalAlignment) GetValue(HeaderHorizontalAlignmentProperty);
+            get => (HorizontalAlignment)GetValue(HeaderHorizontalAlignmentProperty);
             set => SetValue(HeaderHorizontalAlignmentProperty, value);
         }
 
@@ -117,7 +120,7 @@ namespace MaterialDesign_WPF_Expander
         [Category("Common")]
         public bool IsOpened
         {
-            get => (bool) GetValue(IsOpenedProperty);
+            get => (bool)GetValue(IsOpenedProperty);
             set
             {
                 Storyboard.SetTargetName(_expanderBorder, _expanderBorder.Name);
@@ -186,12 +189,52 @@ namespace MaterialDesign_WPF_Expander
             );
 
         /// <summary>
+        /// 
+        /// </summary>
+        public FontFamily HeaderFontFamily
+        {
+            get => GetValue(HeaderFontFamilyProperty) as FontFamily;
+            set => SetValue(HeaderFontFamilyProperty, value);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static readonly DependencyProperty HeaderFontFamilyProperty =
+            DependencyProperty.Register(
+                nameof(HeaderFontFamily),
+                typeof(FontFamily),
+                TypeofThis,
+                new PropertyMetadata(new FontFamily(DefaultHeaderFontName))
+            );
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public double HeaderFontSize
+        {
+            get => (double)GetValue(HeaderFontSizeProperty);
+            set => SetValue(HeaderFontSizeProperty, value);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static readonly DependencyProperty HeaderFontSizeProperty =
+            DependencyProperty.Register(
+                nameof(HeaderFontSize),
+                typeof(double),
+                TypeofThis,
+                new PropertyMetadata(DefaultHeaderFontSize)
+            );
+
+        /// <summary>
         /// Controls corner radius for Expander Border.
         /// </summary>
         [Category("Appearance")]
         public CornerRadius CornerRadius
         {
-            get => (CornerRadius) GetValue(CornerRadiusProperty);
+            get => (CornerRadius)GetValue(CornerRadiusProperty);
             set => SetValue(CornerRadiusProperty, value);
         }
 
@@ -212,7 +255,7 @@ namespace MaterialDesign_WPF_Expander
         [Category("Behavior")]
         public int AnimationDuration
         {
-            get => (int) GetValue(AnimationDurationProperty);
+            get => (int)GetValue(AnimationDurationProperty);
             set => SetValue(AnimationDurationProperty, value);
         }
 
@@ -233,7 +276,7 @@ namespace MaterialDesign_WPF_Expander
         [Category("Appearance")]
         public double IconZoom
         {
-            get => (double) GetValue(IconZoomProperty);
+            get => (double)GetValue(IconZoomProperty);
             set => SetValue(IconZoomProperty, value);
         }
 

@@ -15,10 +15,6 @@
     <converters:BooleanToExpanderIconConverter x:Key="BoolToExpanderIconConverter" />
     <converters:IsDisabledToOpacityConverter x:Key="IsDisabledToOpacityConverter" />
     <Style TargetType="{x:Type local:Expander}">
-        <Setter Property="FontFamily" Value="Segoe UI" />
-        <Setter Property="FontStyle" Value="Normal" />
-        <Setter Property="FontWeight" Value="Light" />
-        <Setter Property="FontSize" Value="24" />
         <Setter Property="BorderThickness" Value="0,0,0,1" />
         <Setter Property="Padding" Value="0,0,18,24" />
         <Setter Property="Template">
@@ -78,23 +74,20 @@
                                 Grid.Row="0"
                                 Grid.Column="1"
                                 Margin="0,0,20,0"
+                                FontFamily="{TemplateBinding HeaderFontFamily}"
+                                FontSize="{TemplateBinding HeaderFontSize}"
                                 Padding="15,0,0,0"
                                 HorizontalAlignment="{TemplateBinding HeaderHorizontalAlignment}"
                                 VerticalAlignment="Top"
                                 Cursor="Hand"
-                                FontFamily="{TemplateBinding FontFamily}"
-                                FontSize="{TemplateBinding FontSize}"
-                                FontStretch="{TemplateBinding FontStretch}"
-                                FontStyle="{TemplateBinding FontStyle}"
-                                FontWeight="{TemplateBinding FontWeight}"
                                 Text="{TemplateBinding Title}"
                                 TextWrapping="WrapWithOverflow">
                                 <TextBlock.Style>
-                                    <Style TargetType="TextBlock">
-                                        <Setter Property="Foreground" Value="{DynamicResource Ex-HeaderForeground-Brush}" />
+                                    <Style>
+                                        <Setter Property="TextBlock.Foreground" Value="{DynamicResource Ex-HeaderForeground-Brush}" />
                                         <Style.Triggers>
-                                            <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter Property="Foreground" Value="{DynamicResource Ex-HeaderHoverForeground-Brush}" />
+                                            <Trigger Property="TextBlock.IsMouseOver" Value="True">
+                                                <Setter Property="TextBlock.Foreground" Value="{DynamicResource Ex-HeaderHoverForeground-Brush}" />
                                             </Trigger>
                                         </Style.Triggers>
                                     </Style>
@@ -109,7 +102,10 @@
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top"
                                 Visibility="{TemplateBinding Property=IsOpened,
-                                                             Converter={StaticResource BoolToVisibilityConverter}}" />
+                                                             Converter={StaticResource BoolToVisibilityConverter}}"
+                                Content="{Binding Path=Content,
+                                                  RelativeSource={RelativeSource TemplatedParent}}">
+                            </ContentPresenter>
                         </Grid>
                     </Border>
                 </ControlTemplate>
