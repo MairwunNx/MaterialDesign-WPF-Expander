@@ -248,18 +248,44 @@ namespace MaterialDesign_WPF_Expander
                 new PropertyMetadata(FontStretches.Normal)
             );
 
+        /// <summary>
+        /// 
+        /// </summary>
         public FontStyle HeaderFontStyle
         {
             get => (FontStyle)GetValue(HeaderFontStyleProperty);
             set => SetValue(HeaderFontStyleProperty, value);
         }
-
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public static readonly DependencyProperty HeaderFontStyleProperty =
             DependencyProperty.Register(
                 nameof(HeaderFontStyle),
                 typeof(FontStyle),
                 TypeofThis,
                 new PropertyMetadata(FontStyles.Normal)
+            );
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public FontWeight HeaderFontWeight
+        {
+            get => (FontWeight)GetValue(HeaderFontWeightProperty);
+            set => SetValue(HeaderFontWeightProperty, value);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static readonly DependencyProperty HeaderFontWeightProperty =
+            DependencyProperty.Register(
+                nameof(HeaderFontWeight),
+                typeof(FontWeight),
+                TypeofThis,
+                new PropertyMetadata(FontWeights.Light)
             );
 
         /// <summary>

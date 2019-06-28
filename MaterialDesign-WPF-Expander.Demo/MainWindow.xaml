@@ -92,7 +92,7 @@
                 </TextBlock>
             </Expander>
 
-            <mdex:Expander HeaderFontFamily="Segoe UI Light" FontSize="14" HeaderFontSize="24" MaxWidth="880" IsOpened="True">
+            <mdex:Expander FontSize="14" MaxWidth="880" IsOpened="True">
                 <TextBlock
                     Padding="40,5,5,0"
                     Foreground="#FFB0B0B0"

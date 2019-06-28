@@ -78,6 +78,7 @@
                                 FontSize="{TemplateBinding HeaderFontSize}"
                                 FontStretch="{TemplateBinding HeaderFontStretch}"
                                 FontStyle="{TemplateBinding HeaderFontStyle}"
+                                FontWeight="{TemplateBinding HeaderFontWeight}"
                                 Padding="15,0,0,0"
                                 HorizontalAlignment="{TemplateBinding HeaderHorizontalAlignment}"
                                 VerticalAlignment="Top"
