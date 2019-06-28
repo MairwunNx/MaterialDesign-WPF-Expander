@@ -76,6 +76,7 @@
                                 Margin="0,0,20,0"
                                 FontFamily="{TemplateBinding HeaderFontFamily}"
                                 FontSize="{TemplateBinding HeaderFontSize}"
+                                FontStretch="{TemplateBinding HeaderFontStretch}"
                                 Padding="15,0,0,0"
                                 HorizontalAlignment="{TemplateBinding HeaderHorizontalAlignment}"
                                 VerticalAlignment="Top"
