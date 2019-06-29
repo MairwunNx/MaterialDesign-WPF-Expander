@@ -38,9 +38,6 @@ namespace MaterialDesign_WPF_Expander.Converters
             Type targetType,
             object parameter,
             CultureInfo culture
-        )
-        {
-            throw new NotImplementedException();
-        }
+        ) => throw new NotImplementedException();
     }
 }
