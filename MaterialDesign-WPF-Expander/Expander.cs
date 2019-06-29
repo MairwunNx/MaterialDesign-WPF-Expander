@@ -199,7 +199,7 @@ namespace MaterialDesign_WPF_Expander
         }
 
         /// <summary>
-        /// 
+        /// Identifies the <see cref="HeaderFontFamily"/> dependency property.
         /// </summary>
         public static readonly DependencyProperty HeaderFontFamilyProperty =
             DependencyProperty.Register(
@@ -220,7 +220,7 @@ namespace MaterialDesign_WPF_Expander
         }
 
         /// <summary>
-        /// 
+        /// Identifies the <see cref="HeaderFontSize"/> dependency property.
         /// </summary>
         public static readonly DependencyProperty HeaderFontSizeProperty =
             DependencyProperty.Register(
@@ -241,7 +241,7 @@ namespace MaterialDesign_WPF_Expander
         }
 
         /// <summary>
-        /// 
+        /// Identifies the <see cref="HeaderFontStretch"/> dependency property.
         /// </summary>
         public static readonly DependencyProperty HeaderFontStretchProperty =
             DependencyProperty.Register(
@@ -260,9 +260,9 @@ namespace MaterialDesign_WPF_Expander
             get => (FontStyle)GetValue(HeaderFontStyleProperty);
             set => SetValue(HeaderFontStyleProperty, value);
         }
-        
+
         /// <summary>
-        /// 
+        /// Identifies the <see cref="HeaderFontStyle"/> dependency property.
         /// </summary>
         public static readonly DependencyProperty HeaderFontStyleProperty =
             DependencyProperty.Register(
@@ -283,7 +283,7 @@ namespace MaterialDesign_WPF_Expander
         }
 
         /// <summary>
-        /// 
+        /// Identifies the <see cref="HeaderFontWeight"/> dependency property.
         /// </summary>
         public static readonly DependencyProperty HeaderFontWeightProperty =
             DependencyProperty.Register(

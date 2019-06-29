@@ -75,24 +75,28 @@
             </mdex:Expander>
             <Expander
                 HorizontalAlignment="Left"
-               
                 VerticalAlignment="Top"
                 Background="{DynamicResource MaterialDesignPaper}"
                 BorderBrush="{DynamicResource MaterialDesignTextAreaInactiveBorder}"
                 BorderThickness="10"
+                FontFamily="Segoe UI Light"
+                FontSize="24"
                 Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
-                Header="Easy integration with top website builders" FontSize="24" FontFamily="Segoe UI Light">
+                Header="Easy integration with top website builders">
                 <TextBlock
                     MaxWidth="880"
-                    FontSize="17"
                     Padding="25,15,15,15"
                     FontFamily="Roboto Light"
+                    FontSize="17"
                     TextWrapping="WrapWithOverflow">
                     When you purchase or transfer a domain to Google Domains, you can immediately start creating your website with one of our website building providers. Plans vary in cost, and options include secure and reliable hosting, customizable templates, and powerful features like drag and drop creation and mobile site-management.
                 </TextBlock>
             </Expander>
 
-            <mdex:Expander FontSize="14" MaxWidth="880" IsOpened="True">
+            <mdex:Expander
+                MaxWidth="880"
+                FontSize="14"
+                IsOpened="True">
                 <TextBlock
                     Padding="40,5,5,0"
                     Foreground="#FFB0B0B0"
