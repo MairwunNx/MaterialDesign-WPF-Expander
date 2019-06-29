@@ -9,7 +9,18 @@ using System.Windows.Media.Animation;
 namespace MaterialDesign_WPF_Expander
 {
     /// <summary>
-    /// Base class for Material Design Expander control.
+    /// Base class for <c>Material Design Expander ui-element</c>.
+    /// <para/>
+    /// This class contains the basic logic for working
+    /// with the <c>Expander ui-element</c>.
+    /// <para/>
+    /// This class is inherited from the <see cref="Control"/> class.
+    /// <para/>
+    /// This <c>Expander ui-element</c> is not affiliated with
+    /// the official Material Design guidelines!
+    /// <para/>
+    /// This ui-element was created in accordance with
+    /// one of the sites on Google https://domains.google/#/.
     /// </summary>
     [ContentProperty("Content")]
     public class Expander : Control
@@ -31,7 +42,10 @@ namespace MaterialDesign_WPF_Expander
         }
 
         /// <summary>
-        /// Represents a property to display any single element within the Expander.
+        /// Set or get the content object that was set in the
+        /// tags of the Expander ui-element.
+        /// 
+        /// <para>Designer Category: <c>Common</c>.</para>
         /// </summary>
         [Category("Common")]
         public object Content
@@ -52,7 +66,10 @@ namespace MaterialDesign_WPF_Expander
             );
 
         /// <summary>
-        /// Represents the property that controls the Expander header.
+        /// Set or get the expander title text that was set in
+        /// the Expander ui-element.
+        /// 
+        /// <para>Designer Category: <c>Common</c>.</para>
         /// </summary>
         [Category("Common")]
         public string Title
@@ -73,7 +90,10 @@ namespace MaterialDesign_WPF_Expander
             );
 
         /// <summary>
-        /// Controls the visibility of the Expander icon.
+        /// Set or get the expander icon visibility that was set in
+        /// the Expander ui-element.
+        /// 
+        /// <para>Designer Category: <c>Appearance</c>.</para>
         /// </summary>
         [Category("Appearance")]
         public bool IconIsVisible
@@ -94,7 +114,10 @@ namespace MaterialDesign_WPF_Expander
             );
 
         /// <summary>
-        /// Controls the horizontal position of the header in Expander.
+        /// Set or get the expander title horizontal alignment
+        /// that was set in the Expander ui-element.
+        /// 
+        /// <para>Designer Category: <c>Layout</c>.</para>
         /// </summary>
         [Category("Layout")]
         public HorizontalAlignment HeaderHorizontalAlignment
@@ -115,7 +138,10 @@ namespace MaterialDesign_WPF_Expander
             );
 
         /// <summary>
-        /// Gets or sets whether the <see cref="Expander" /> is opened.
+        /// Set or get the expander is opened state
+        /// that was set in the Expander ui-element.
+        /// 
+        /// <para>Designer Category: <c>Common</c>.</para>
         /// </summary>
         [Category("Common")]
         public bool IsOpened
@@ -189,7 +215,10 @@ namespace MaterialDesign_WPF_Expander
             );
 
         /// <summary>
-        /// Sets ot get the font family for the Expander Header ui element.
+        /// Set or get the expander header font family
+        /// that was set in the Expander ui-element.
+        /// 
+        /// <para>Designer Category: <c>Text Appearance</c>.</para>
         /// </summary>
         [Category("Text Appearance")]
         public FontFamily HeaderFontFamily
@@ -210,7 +239,10 @@ namespace MaterialDesign_WPF_Expander
             );
 
         /// <summary>
-        /// Sets ot get the font size for the Expander Header ui element.
+        /// Set or get the expander header font size
+        /// that was set in the Expander ui-element.
+        /// 
+        /// <para>Designer Category: <c>Text Appearance</c>.</para>
         /// </summary>
         [Category("Text Appearance")]
         public double HeaderFontSize
@@ -231,7 +263,10 @@ namespace MaterialDesign_WPF_Expander
             );
 
         /// <summary>
-        /// Sets ot get the font stretch for the Expander Header ui element.
+        /// Set or get the expander header font stretch
+        /// that was set in the Expander ui-element.
+        /// 
+        /// <para>Designer Category: <c>Text Appearance</c>.</para>
         /// </summary>
         [Category("Text Appearance")]
         public FontStretch HeaderFontStretch
@@ -252,7 +287,10 @@ namespace MaterialDesign_WPF_Expander
             );
 
         /// <summary>
-        /// Sets ot get the font style for the Expander Header ui element.
+        /// Set or get the expander header font style
+        /// that was set in the Expander ui-element.
+        /// 
+        /// <para>Designer Category: <c>Text Appearance</c>.</para>
         /// </summary>
         [Category("Text Appearance")]
         public FontStyle HeaderFontStyle
@@ -273,7 +311,10 @@ namespace MaterialDesign_WPF_Expander
             );
 
         /// <summary>
-        /// Sets ot get the font weight for the Expander Header ui element.
+        /// Set or get the expander header font weight
+        /// that was set in the Expander ui-element.
+        /// 
+        /// <para>Designer Category: <c>Text Appearance</c>.</para>
         /// </summary>
         [Category("Text Appearance")]
         public FontWeight HeaderFontWeight
@@ -294,7 +335,10 @@ namespace MaterialDesign_WPF_Expander
             );
 
         /// <summary>
-        /// Controls corner radius for Expander Border.
+        /// Set or get the expander border corner radius
+        /// that was set in the Expander ui-element.
+        /// 
+        /// <para>Designer Category: <c>Appearance</c>.</para>
         /// </summary>
         [Category("Appearance")]
         public CornerRadius CornerRadius
@@ -315,7 +359,10 @@ namespace MaterialDesign_WPF_Expander
             );
 
         /// <summary>
-        /// Controls the duration of the Expander Opening / Closing Animation.
+        /// Set or get the expander opening \ closing animation
+        /// duration that was set in the Expander ui-element.
+        /// 
+        /// <para>Designer Category: <c>Appearance</c>.</para>
         /// </summary>
         [Category("Behavior")]
         public int AnimationDuration
@@ -336,7 +383,10 @@ namespace MaterialDesign_WPF_Expander
             );
 
         /// <summary>
-        /// Controls the scale of the Expander Icon.
+        /// Set or get the expander header icon zoom
+        /// that was set in the Expander ui-element.
+        /// 
+        /// <para>Designer Category: <c>Appearance</c>.</para>
         /// </summary>
         [Category("Appearance")]
         public double IconZoom
@@ -356,7 +406,13 @@ namespace MaterialDesign_WPF_Expander
                 new PropertyMetadata(0.7)
             );
 
-        /// <inheritdoc />
+        /// <summary>
+        /// This overridden method assign the used ui elements
+        /// for work Expander-ui element.
+        /// <para/>
+        /// Also this overridden method initializes some parameters
+        /// after loading the composite ui-elements of the Expander.
+        /// </summary>
         public override void OnApplyTemplate()
         {
             AssignElements();
