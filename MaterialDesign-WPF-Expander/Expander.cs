@@ -189,7 +189,7 @@ namespace MaterialDesign_WPF_Expander
             );
 
         /// <summary>
-        /// 
+        /// Sets ot get the font family for the Expander Header ui element.
         /// </summary>
         [Category("Text Appearance")]
         public FontFamily HeaderFontFamily
@@ -210,7 +210,7 @@ namespace MaterialDesign_WPF_Expander
             );
 
         /// <summary>
-        /// 
+        /// Sets ot get the font size for the Expander Header ui element.
         /// </summary>
         [Category("Text Appearance")]
         public double HeaderFontSize
@@ -231,7 +231,7 @@ namespace MaterialDesign_WPF_Expander
             );
 
         /// <summary>
-        /// 
+        /// Sets ot get the font stretch for the Expander Header ui element.
         /// </summary>
         [Category("Text Appearance")]
         public FontStretch HeaderFontStretch
@@ -252,7 +252,7 @@ namespace MaterialDesign_WPF_Expander
             );
 
         /// <summary>
-        /// 
+        /// Sets ot get the font style for the Expander Header ui element.
         /// </summary>
         [Category("Text Appearance")]
         public FontStyle HeaderFontStyle
@@ -273,7 +273,7 @@ namespace MaterialDesign_WPF_Expander
             );
 
         /// <summary>
-        /// 
+        /// Sets ot get the font weight for the Expander Header ui element.
         /// </summary>
         [Category("Text Appearance")]
         public FontWeight HeaderFontWeight
