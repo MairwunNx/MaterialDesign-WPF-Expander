@@ -59,7 +59,8 @@
                 Padding="0,0,18,24"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
-                FontSize="26"
+                FontSize="14"
+                Foreground="#FFF09D9D"
                 IsOpened="True">
                 <Grid>
                     <TextBlock
@@ -67,23 +68,22 @@
                         MaxWidth="880"
                         Padding="40,15,15,15"
                         FontFamily="Roboto Light"
-                        FontSize="14"
                         Foreground="{DynamicResource Ex-HeaderForeground-Brush}"
                         Text="When you purchase or transfer a domain to Google Domains, you can immediately start creating your website with one of our website building providers. Plans vary in cost, and options include secure and reliable hosting, customizable templates, and powerful features like drag and drop creation and mobile site-management."
                         TextWrapping="WrapWithOverflow" />
                 </Grid>
             </mdex:Expander>
             <Expander
+                Width="549"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 Background="{DynamicResource MaterialDesignPaper}"
                 BorderBrush="{DynamicResource MaterialDesignTextAreaInactiveBorder}"
                 BorderThickness="10"
                 FontFamily="Segoe UI Light"
-                FontSize="24"
-                Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
+                Foreground="#FFFFA4A4"
                 Header="Easy integration with top website builders">
-                
+                When you purchase or transfer a domain to Google Domains, you can immediately start creating your website with one of our website building providers. Plans vary in cost, and options include secure and reliable hosting, customizable templates, and powerful features like drag and drop creation and mobile site-management.
             </Expander>
 
             <mdex:Expander

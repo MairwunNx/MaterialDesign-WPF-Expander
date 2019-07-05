@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using static System.Windows.Application;
 
 namespace MaterialDesign_WPF_Expander
 {
@@ -98,7 +99,7 @@ namespace MaterialDesign_WPF_Expander
         [Category("Appearance")]
         public bool IconIsVisible
         {
-            get => (bool)GetValue(IconIsVisibleProperty);
+            get => (bool) GetValue(IconIsVisibleProperty);
             set => SetValue(IconIsVisibleProperty, value);
         }
 
@@ -122,7 +123,7 @@ namespace MaterialDesign_WPF_Expander
         [Category("Layout")]
         public HorizontalAlignment HeaderHorizontalAlignment
         {
-            get => (HorizontalAlignment)GetValue(HeaderHorizontalAlignmentProperty);
+            get => (HorizontalAlignment) GetValue(HeaderHorizontalAlignmentProperty);
             set => SetValue(HeaderHorizontalAlignmentProperty, value);
         }
 
@@ -146,7 +147,7 @@ namespace MaterialDesign_WPF_Expander
         [Category("Common")]
         public bool IsOpened
         {
-            get => (bool)GetValue(IsOpenedProperty);
+            get => (bool) GetValue(IsOpenedProperty);
             set
             {
                 Storyboard.SetTargetName(_expanderBorder, _expanderBorder.Name);
@@ -194,10 +195,7 @@ namespace MaterialDesign_WPF_Expander
                     Storyboard storyboard = new Storyboard();
                     storyboard.Children.Add(doubleAnimation);
                     storyboard.FillBehavior = FillBehavior.Stop;
-                    storyboard.Completed += (sender, args) =>
-                    {
-                        SetValue(IsOpenedProperty, false);
-                    };
+                    storyboard.Completed += (sender, args) => { SetValue(IsOpenedProperty, false); };
                     storyboard.Begin(_expanderBorder);
                 }
             }
@@ -247,7 +245,7 @@ namespace MaterialDesign_WPF_Expander
         [Category("Text Appearance")]
         public double HeaderFontSize
         {
-            get => (double)GetValue(HeaderFontSizeProperty);
+            get => (double) GetValue(HeaderFontSizeProperty);
             set => SetValue(HeaderFontSizeProperty, value);
         }
 
@@ -271,7 +269,7 @@ namespace MaterialDesign_WPF_Expander
         [Category("Text Appearance")]
         public FontStretch HeaderFontStretch
         {
-            get => (FontStretch)GetValue(HeaderFontStretchProperty);
+            get => (FontStretch) GetValue(HeaderFontStretchProperty);
             set => SetValue(HeaderFontStretchProperty, value);
         }
 
@@ -295,7 +293,7 @@ namespace MaterialDesign_WPF_Expander
         [Category("Text Appearance")]
         public FontStyle HeaderFontStyle
         {
-            get => (FontStyle)GetValue(HeaderFontStyleProperty);
+            get => (FontStyle) GetValue(HeaderFontStyleProperty);
             set => SetValue(HeaderFontStyleProperty, value);
         }
 
@@ -319,7 +317,7 @@ namespace MaterialDesign_WPF_Expander
         [Category("Text Appearance")]
         public FontWeight HeaderFontWeight
         {
-            get => (FontWeight)GetValue(HeaderFontWeightProperty);
+            get => (FontWeight) GetValue(HeaderFontWeightProperty);
             set => SetValue(HeaderFontWeightProperty, value);
         }
 
@@ -343,7 +341,7 @@ namespace MaterialDesign_WPF_Expander
         [Category("Appearance")]
         public CornerRadius CornerRadius
         {
-            get => (CornerRadius)GetValue(CornerRadiusProperty);
+            get => (CornerRadius) GetValue(CornerRadiusProperty);
             set => SetValue(CornerRadiusProperty, value);
         }
 
@@ -367,7 +365,7 @@ namespace MaterialDesign_WPF_Expander
         [Category("Behavior")]
         public int AnimationDuration
         {
-            get => (int)GetValue(AnimationDurationProperty);
+            get => (int) GetValue(AnimationDurationProperty);
             set => SetValue(AnimationDurationProperty, value);
         }
 
@@ -391,7 +389,7 @@ namespace MaterialDesign_WPF_Expander
         [Category("Appearance")]
         public double IconZoom
         {
-            get => (double)GetValue(IconZoomProperty);
+            get => (double) GetValue(IconZoomProperty);
             set => SetValue(IconZoomProperty, value);
         }
 
@@ -404,6 +402,46 @@ namespace MaterialDesign_WPF_Expander
                 typeof(double),
                 TypeofThis,
                 new PropertyMetadata(0.7)
+            );
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public new Brush Background
+        {
+            get => GetValue(BackgroundProperty) as Brush;
+            set => SetValue(BackgroundProperty, value);
+        }
+
+        /// <summary>
+        /// Identifies the <see cref="Background"/> dependency property.
+        /// </summary>
+        public new static readonly DependencyProperty BackgroundProperty =
+            DependencyProperty.Register(
+                nameof(Background),
+                typeof(Brush),
+                TypeofThis,
+                new PropertyMetadata(Current.Resources["Ex-Background-Brush"] as Brush)
+            );
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public new Brush Foreground
+        {
+            get => GetValue(ForegroundProperty) as Brush;
+            set => SetValue(ForegroundProperty, value);
+        }
+
+        /// <summary>
+        /// Identifies the <see cref="Foreground"/> dependency property.
+        /// </summary>
+        public new static readonly DependencyProperty ForegroundProperty =
+            DependencyProperty.Register(
+                nameof(Foreground),
+                typeof(Brush),
+                TypeofThis,
+                new PropertyMetadata((Current.Resources["Ex-HeaderForeground-Brush"] as Brush))
             );
 
         /// <summary>

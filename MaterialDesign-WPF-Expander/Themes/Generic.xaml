@@ -25,6 +25,7 @@
                         Padding="{TemplateBinding Padding}"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"
+                        Background="{TemplateBinding Background}"
                         BorderBrush="{DynamicResource Ex-BottomBorderFill-Brush}"
                         BorderThickness="{TemplateBinding BorderThickness}"
                         CornerRadius="{TemplateBinding CornerRadius}"
@@ -38,7 +39,7 @@
                             x:Name="ExpanderGrid"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
-                            Background="{DynamicResource Ex-Background-Brush}">
+                            Background="{TemplateBinding Background}">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
@@ -74,15 +75,16 @@
                                 Grid.Row="0"
                                 Grid.Column="1"
                                 Margin="0,0,20,0"
+                                Padding="15,0,0,0"
+                                HorizontalAlignment="{TemplateBinding HeaderHorizontalAlignment}"
+                                VerticalAlignment="Top"
+                                Cursor="Hand"
                                 FontFamily="{TemplateBinding HeaderFontFamily}"
                                 FontSize="{TemplateBinding HeaderFontSize}"
                                 FontStretch="{TemplateBinding HeaderFontStretch}"
                                 FontStyle="{TemplateBinding HeaderFontStyle}"
                                 FontWeight="{TemplateBinding HeaderFontWeight}"
-                                Padding="15,0,0,0"
-                                HorizontalAlignment="{TemplateBinding HeaderHorizontalAlignment}"
-                                VerticalAlignment="Top"
-                                Cursor="Hand"
+                                Foreground="{TemplateBinding Foreground}"
                                 Text="{TemplateBinding Title}"
                                 TextWrapping="WrapWithOverflow">
                                 <TextBlock.Style>
@@ -104,11 +106,9 @@
                                 Grid.ColumnSpan="2"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top"
+                                Content="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}}"
                                 Visibility="{TemplateBinding Property=IsOpened,
-                                                             Converter={StaticResource BoolToVisibilityConverter}}"
-                                Content="{Binding Path=Content,
-                                                  RelativeSource={RelativeSource TemplatedParent}}">
-                            </ContentPresenter>
+                                                             Converter={StaticResource BoolToVisibilityConverter}}" />
                         </Grid>
                     </Border>
                 </ControlTemplate>
