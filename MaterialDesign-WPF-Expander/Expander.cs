@@ -405,7 +405,10 @@ namespace MaterialDesign_WPF_Expander
             );
 
         /// <summary>
+        /// Set or get the expander background color
+        /// for the Expander ui-element.
         /// 
+        /// <para>Designer Category: <c>Brush</c>.</para>
         /// </summary>
         public new Brush Background
         {
@@ -425,7 +428,10 @@ namespace MaterialDesign_WPF_Expander
             );
 
         /// <summary>
+        /// Set or get the expander header foreground color
+        /// for the Expander ui-element.
         /// 
+        /// <para>Designer Category: <c>Brush</c>.</para>
         /// </summary>
         public new Brush Foreground
         {
