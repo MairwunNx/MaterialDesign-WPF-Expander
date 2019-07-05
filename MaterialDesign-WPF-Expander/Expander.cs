@@ -195,7 +195,10 @@ namespace MaterialDesign_WPF_Expander
                     Storyboard storyboard = new Storyboard();
                     storyboard.Children.Add(doubleAnimation);
                     storyboard.FillBehavior = FillBehavior.Stop;
-                    storyboard.Completed += (sender, args) => { SetValue(IsOpenedProperty, false); };
+                    storyboard.Completed += (sender, args) =>
+                    {
+                        SetValue(IsOpenedProperty, false);
+                    };
                     storyboard.Begin(_expanderBorder);
                 }
             }
@@ -448,6 +451,26 @@ namespace MaterialDesign_WPF_Expander
                 typeof(Brush),
                 TypeofThis,
                 new PropertyMetadata(Current.Resources["Ex-HeaderForeground-Brush"] as Brush)
+            );
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public Brush HoverForeground
+        {
+            get => GetValue(HoverForegroundProperty) as Brush;
+            set => SetValue(HoverForegroundProperty, value);
+        }
+
+        /// <summary>
+        /// Identifies the <see cref="HoverForeground"/> dependency property.
+        /// </summary>
+        public static readonly DependencyProperty HoverForegroundProperty =
+            DependencyProperty.Register(
+                nameof(HoverForeground),
+                typeof(Brush),
+                TypeofThis,
+                new PropertyMetadata(Current.Resources["Ex-HeaderHoverForeground-Brush"] as Brush)
             );
 
         /// <summary>

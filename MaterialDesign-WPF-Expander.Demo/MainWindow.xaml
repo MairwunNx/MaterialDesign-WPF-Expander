@@ -63,6 +63,7 @@
                 VerticalAlignment="Top"
                 FontSize="14"
                 Foreground="#FFF09D9D"
+                HoverForeground="YellowGreen"
                 IsOpened="True">
                 <Grid>
                     <TextBlock

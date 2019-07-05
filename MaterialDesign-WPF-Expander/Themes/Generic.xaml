@@ -84,15 +84,14 @@
                                 FontStretch="{TemplateBinding HeaderFontStretch}"
                                 FontStyle="{TemplateBinding HeaderFontStyle}"
                                 FontWeight="{TemplateBinding HeaderFontWeight}"
-                                Foreground="{TemplateBinding Foreground}"
                                 Text="{TemplateBinding Title}"
                                 TextWrapping="WrapWithOverflow">
                                 <TextBlock.Style>
                                     <Style>
-                                        <Setter Property="TextBlock.Foreground" Value="{DynamicResource Ex-HeaderForeground-Brush}" />
+                                        <Setter Property="TextBlock.Foreground" Value="{Binding Path=Foreground, RelativeSource={RelativeSource TemplatedParent}}" />
                                         <Style.Triggers>
                                             <Trigger Property="TextBlock.IsMouseOver" Value="True">
-                                                <Setter Property="TextBlock.Foreground" Value="{DynamicResource Ex-HeaderHoverForeground-Brush}" />
+                                                <Setter Property="TextBlock.Foreground" Value="{Binding Path=HoverForeground, RelativeSource={RelativeSource TemplatedParent}}" />
                                             </Trigger>
                                         </Style.Triggers>
                                     </Style>
