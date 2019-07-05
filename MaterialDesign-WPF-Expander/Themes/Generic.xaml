@@ -88,10 +88,10 @@
                                 TextWrapping="WrapWithOverflow">
                                 <TextBlock.Style>
                                     <Style>
-                                        <Setter Property="TextBlock.Foreground" Value="{Binding Path=Foreground, RelativeSource={RelativeSource TemplatedParent}}" />
+                                        <Setter Property="TextBlock.Foreground" Value="{Binding Path=Foreground, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" />
                                         <Style.Triggers>
                                             <Trigger Property="TextBlock.IsMouseOver" Value="True">
-                                                <Setter Property="TextBlock.Foreground" Value="{Binding Path=HoverForeground, RelativeSource={RelativeSource TemplatedParent}}" />
+                                                <Setter Property="TextBlock.Foreground" Value="{Binding Path=HoverForeground, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" />
                                             </Trigger>
                                         </Style.Triggers>
                                     </Style>
