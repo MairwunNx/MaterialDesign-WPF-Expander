@@ -26,7 +26,7 @@
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"
                         Background="{TemplateBinding Background}"
-                        BorderBrush="{DynamicResource Ex-BottomBorderFill-Brush}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}"
                         CornerRadius="{TemplateBinding CornerRadius}"
                         IsEnabled="{TemplateBinding IsEnabled}"

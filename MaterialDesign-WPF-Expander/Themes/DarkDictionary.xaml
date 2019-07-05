@@ -3,5 +3,5 @@
     <SolidColorBrush x:Key="Ex-HeaderForeground-Brush" Color="#aeaeae" />
     <SolidColorBrush x:Key="Ex-HeaderHoverForeground-Brush" Color="#8d8d8d" />
     <SolidColorBrush x:Key="Ex-ButtonForeground-Brush" Color="#bb86fc" />
-    <SolidColorBrush x:Key="Ex-BottomBorderFill-Brush" Color="#3e3e3e" />
+    <SolidColorBrush x:Key="Ex-BorderFill-Brush" Color="#3e3e3e" />
 </ResourceDictionary>

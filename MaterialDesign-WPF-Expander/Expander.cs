@@ -447,7 +447,27 @@ namespace MaterialDesign_WPF_Expander
                 nameof(Foreground),
                 typeof(Brush),
                 TypeofThis,
-                new PropertyMetadata((Current.Resources["Ex-HeaderForeground-Brush"] as Brush))
+                new PropertyMetadata(Current.Resources["Ex-HeaderForeground-Brush"] as Brush)
+            );
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public new Brush BorderBrush
+        {
+            get => GetValue(BorderBrushProperty) as Brush;
+            set => SetValue(BorderBrushProperty, value);
+        }
+
+        /// <summary>
+        /// Identifies the <see cref="BorderBrush"/> dependency property.
+        /// </summary>
+        public new static readonly DependencyProperty BorderBrushProperty =
+            DependencyProperty.Register(
+                nameof(BorderBrush),
+                typeof(Brush),
+                TypeofThis,
+                new PropertyMetadata(Current.Resources["Ex-BorderFill-Brush"] as Brush)
             );
 
         /// <summary>
