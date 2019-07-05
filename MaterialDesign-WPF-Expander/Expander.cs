@@ -454,8 +454,12 @@ namespace MaterialDesign_WPF_Expander
             );
 
         /// <summary>
+        /// Set or get the expander header hover foreground color
+        /// for the Expander ui-element.
         /// 
+        /// <para>Designer Category: <c>Brush</c>.</para>
         /// </summary>
+        [Category("Brush")]
         public Brush HoverForeground
         {
             get => GetValue(HoverForegroundProperty) as Brush;
