@@ -449,9 +449,12 @@ namespace MaterialDesign_WPF_Expander
                 TypeofThis,
                 new PropertyMetadata(Current.Resources["Ex-HeaderForeground-Brush"] as Brush)
             );
-        
+
         /// <summary>
+        /// Set or get the expander border color
+        /// for the Expander ui-element.
         /// 
+        /// <para>Designer Category: <c>Brush</c>.</para>
         /// </summary>
         public new Brush BorderBrush
         {
