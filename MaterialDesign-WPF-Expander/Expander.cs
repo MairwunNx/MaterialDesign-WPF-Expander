@@ -206,17 +206,17 @@ namespace MaterialDesign_WPF_Expander
         {
             var value = (bool) evt.NewValue;
 
-            //We aren't initialized yet, setter was called from parent Window initialization, 
+            // We aren't initialized yet, setter was called from parent Window initialization.
             if (_expanderBorder == null)
             {
-                //Anyway we don't need any animations to occur in first rendering
+                // Anyway we don't need any animations to occur in first rendering.
                 return;
             }
 
             Storyboard.SetTargetName(_expanderBorder, _expanderBorder.Name);
             IsOpenedChangedEvent?.Invoke(
                 this,
-                new IsOpenedChangedEventArgs {IsOpened = value}
+                new IsOpenedChangedEventArgs { IsOpened = value }
             );
 
             if (value)
@@ -284,7 +284,7 @@ namespace MaterialDesign_WPF_Expander
         public bool IsOpened
         {
             get => (bool) GetValue(IsOpenedProperty);
-            set { SetValue(IsOpenedProperty, value); }
+            set => SetValue(IsOpenedProperty, value);
         }
 
         /// <summary>
@@ -295,7 +295,7 @@ namespace MaterialDesign_WPF_Expander
                 nameof(IsOpened),
                 typeof(bool),
                 TypeofThis,
-                new PropertyMetadata(false, (d,e)=>((Expander)d).IsOpenedChanged(e))
+                new PropertyMetadata(false, (d, e) => ((Expander) d).IsOpenedChanged(e))
             );
 
         /// <summary>
