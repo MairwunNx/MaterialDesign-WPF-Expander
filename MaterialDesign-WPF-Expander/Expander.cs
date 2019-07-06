@@ -44,57 +44,60 @@ namespace MaterialDesign_WPF_Expander
         }
 
         /// <summary>
-        /// 
+        /// Identifies the <see cref="OpenedEvent"/> event delegate.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">expander ui-element class instance</param>
+        /// <param name="e">Just empty event arguments</param>
         public delegate void OpenedDelegate(object sender, EventArgs e);
         /// <summary>
-        /// 
+        /// Occurs when the expander finished the animation and is fully opened.
         /// </summary>
         public event OpenedDelegate OpenedEvent;
 
         /// <summary>
-        /// 
+        /// Identifies the <see cref="OpenEvent"/> event delegate.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">expander ui-element class instance</param>
+        /// <param name="e">Just empty event arguments</param>
         public delegate void OpenDelegate(object sender, EventArgs e);
         /// <summary>
-        /// 
+        /// Occurs when the expander starting the animation and starts to open.
         /// </summary>
         public event OpenDelegate OpenEvent;
 
         /// <summary>
-        /// 
+        /// Identifies the <see cref="ClosedEvent"/> event delegate.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">expander ui-element class instance</param>
+        /// <param name="e">Just empty event arguments</param>
         public delegate void ClosedDelegate(object sender, EventArgs e);
         /// <summary>
-        /// 
+        /// Occurs when the expander finished the animation and is fully closed.
         /// </summary>
         public event ClosedDelegate ClosedEvent;
 
         /// <summary>
-        /// 
+        /// Identifies the <see cref="CloseEvent"/> event delegate.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">expander ui-element class instance</param>
+        /// <param name="e">Just empty event arguments</param>
         public delegate void CloseDelegate(object sender, EventArgs e);
         /// <summary>
-        /// 
+        /// Occurs when the expander starting the animation and starts to close.
         /// </summary>
         public event CloseDelegate CloseEvent;
 
         /// <summary>
-        /// 
+        /// Identifies the <see cref="IsOpenedChangedEvent"/> event delegate.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        public delegate void IsOpenedChangedDelegate(object sender, IsOpenedChangedEventArgs e);
+        /// <param name="sender">expander ui-element class instance</param>
+        /// <param name="e">Just empty event arguments</param>
+        public delegate void IsOpenedChangedDelegate(
+            object sender,
+            IsOpenedChangedEventArgs e
+        );
         /// <summary>
-        /// 
+        /// Occurs when the expander <see cref="IsOpened"/> value changed.
         /// </summary>
         public event IsOpenedChangedDelegate IsOpenedChangedEvent;
 
