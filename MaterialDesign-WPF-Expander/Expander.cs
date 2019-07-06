@@ -49,6 +49,7 @@ namespace MaterialDesign_WPF_Expander
         /// <param name="sender">expander ui-element class instance</param>
         /// <param name="e">Just empty event arguments</param>
         public delegate void OpenedDelegate(object sender, EventArgs e);
+
         /// <summary>
         /// Occurs when the expander finished the animation and is fully opened.
         /// </summary>
@@ -60,6 +61,7 @@ namespace MaterialDesign_WPF_Expander
         /// <param name="sender">expander ui-element class instance</param>
         /// <param name="e">Just empty event arguments</param>
         public delegate void OpenDelegate(object sender, EventArgs e);
+
         /// <summary>
         /// Occurs when the expander starting the animation and starts to open.
         /// </summary>
@@ -71,6 +73,7 @@ namespace MaterialDesign_WPF_Expander
         /// <param name="sender">expander ui-element class instance</param>
         /// <param name="e">Just empty event arguments</param>
         public delegate void ClosedDelegate(object sender, EventArgs e);
+
         /// <summary>
         /// Occurs when the expander finished the animation and is fully closed.
         /// </summary>
@@ -82,6 +85,7 @@ namespace MaterialDesign_WPF_Expander
         /// <param name="sender">expander ui-element class instance</param>
         /// <param name="e">Just empty event arguments</param>
         public delegate void CloseDelegate(object sender, EventArgs e);
+
         /// <summary>
         /// Occurs when the expander starting the animation and starts to close.
         /// </summary>
@@ -96,6 +100,7 @@ namespace MaterialDesign_WPF_Expander
             object sender,
             IsOpenedChangedEventArgs e
         );
+
         /// <summary>
         /// Occurs when the expander <see cref="IsOpened"/> value changed.
         /// </summary>
@@ -197,6 +202,78 @@ namespace MaterialDesign_WPF_Expander
                 new PropertyMetadata(HorizontalAlignment.Left)
             );
 
+        private void IsOpenedChanged(DependencyPropertyChangedEventArgs evt)
+        {
+            var value = (bool) evt.NewValue;
+
+            // We aren't initialized yet, setter was called from parent Window initialization.
+            if (_expanderBorder == null)
+            {
+                // Anyway we don't need any animations to occur in first rendering.
+                return;
+            }
+
+            Storyboard.SetTargetName(_expanderBorder, _expanderBorder.Name);
+            IsOpenedChangedEvent?.Invoke(
+                this,
+                new IsOpenedChangedEventArgs { IsOpened = value }
+            );
+
+            if (value)
+            {
+                OpenEvent?.Invoke(this, EventArgs.Empty);
+
+                DoubleAnimation doubleAnimation = new DoubleAnimation
+                {
+                    To = _expanderBorder.BorderThickness.Bottom +
+                         _expanderBorder.Padding.Bottom +
+                         _expanderHeader.ActualHeight +
+                         _contentPresenter.ActualHeight,
+                    From = _expanderBorder.BorderThickness.Bottom +
+                           _expanderBorder.Padding.Bottom +
+                           _expanderHeader.ActualHeight,
+                    Duration = new Duration(TimeSpan.FromMilliseconds(AnimationDuration)),
+                };
+
+                Storyboard.SetTargetProperty(
+                    doubleAnimation,
+                    new PropertyPath(HeightProperty)
+                );
+                Storyboard storyboard = new Storyboard();
+                storyboard.Children.Add(doubleAnimation);
+                storyboard.FillBehavior = FillBehavior.Stop;
+                storyboard.Completed += (s, e) => { OpenedEvent?.Invoke(this, EventArgs.Empty); };
+                storyboard.Begin(_expanderBorder);
+            }
+            else
+            {
+                CloseEvent?.Invoke(this, EventArgs.Empty);
+
+                DoubleAnimation doubleAnimation = new DoubleAnimation
+                {
+                    To = _expanderBorder.BorderThickness.Bottom +
+                         _expanderBorder.Padding.Bottom +
+                         _expanderHeader.ActualHeight,
+                    From = _expanderBorder.ActualHeight,
+                    Duration = new Duration(TimeSpan.FromMilliseconds(AnimationDuration))
+                };
+
+                Storyboard.SetTargetProperty(
+                    doubleAnimation,
+                    new PropertyPath(HeightProperty)
+                );
+                Storyboard storyboard = new Storyboard();
+                storyboard.Children.Add(doubleAnimation);
+                storyboard.FillBehavior = FillBehavior.Stop;
+                storyboard.Completed += (sender, args) =>
+                {
+                    IsOpened = false;
+                    ClosedEvent?.Invoke(this, EventArgs.Empty);
+                };
+                storyboard.Begin(_expanderBorder);
+            }
+        }
+
         /// <summary>
         /// Set or get the expander is opened state
         /// that was set in the Expander ui-element.
@@ -207,72 +284,7 @@ namespace MaterialDesign_WPF_Expander
         public bool IsOpened
         {
             get => (bool) GetValue(IsOpenedProperty);
-            set
-            {
-                Storyboard.SetTargetName(_expanderBorder, _expanderBorder.Name);
-                IsOpenedChangedEvent?.Invoke(
-                    this,
-                    new IsOpenedChangedEventArgs { IsOpened = value }
-                );
-
-                if (value)
-                {
-                    OpenEvent?.Invoke(this, EventArgs.Empty);
-                    SetValue(IsOpenedProperty, true);
-
-                    DoubleAnimation doubleAnimation = new DoubleAnimation
-                    {
-                        To = _expanderBorder.BorderThickness.Bottom +
-                             _expanderBorder.Padding.Bottom +
-                             _expanderHeader.ActualHeight +
-                             _contentPresenter.ActualHeight,
-                        From = _expanderBorder.BorderThickness.Bottom +
-                               _expanderBorder.Padding.Bottom +
-                               _expanderHeader.ActualHeight,
-                        Duration = new Duration(TimeSpan.FromMilliseconds(AnimationDuration)),
-                    };
-
-                    Storyboard.SetTargetProperty(
-                        doubleAnimation,
-                        new PropertyPath(HeightProperty)
-                    );
-                    Storyboard storyboard = new Storyboard();
-                    storyboard.Children.Add(doubleAnimation);
-                    storyboard.FillBehavior = FillBehavior.Stop;
-                    storyboard.Completed += (s, e) =>
-                    {
-                        OpenedEvent?.Invoke(this, EventArgs.Empty);
-                    };
-                    storyboard.Begin(_expanderBorder);
-                }
-                else
-                {
-                    CloseEvent?.Invoke(this, EventArgs.Empty);
-
-                    DoubleAnimation doubleAnimation = new DoubleAnimation
-                    {
-                        To = _expanderBorder.BorderThickness.Bottom +
-                             _expanderBorder.Padding.Bottom +
-                             _expanderHeader.ActualHeight,
-                        From = _expanderBorder.ActualHeight,
-                        Duration = new Duration(TimeSpan.FromMilliseconds(AnimationDuration))
-                    };
-
-                    Storyboard.SetTargetProperty(
-                        doubleAnimation,
-                        new PropertyPath(HeightProperty)
-                    );
-                    Storyboard storyboard = new Storyboard();
-                    storyboard.Children.Add(doubleAnimation);
-                    storyboard.FillBehavior = FillBehavior.Stop;
-                    storyboard.Completed += (sender, args) =>
-                    {
-                        SetValue(IsOpenedProperty, false);
-                        ClosedEvent?.Invoke(this, EventArgs.Empty);
-                    };
-                    storyboard.Begin(_expanderBorder);
-                }
-            }
+            set => SetValue(IsOpenedProperty, value);
         }
 
         /// <summary>
@@ -283,7 +295,7 @@ namespace MaterialDesign_WPF_Expander
                 nameof(IsOpened),
                 typeof(bool),
                 TypeofThis,
-                new PropertyMetadata(false)
+                new PropertyMetadata(false, (d, e) => ((Expander) d).IsOpenedChanged(e))
             );
 
         /// <summary>
