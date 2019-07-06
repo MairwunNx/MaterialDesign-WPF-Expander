@@ -65,7 +65,7 @@
     <Compile Include="Converters\BooleanToExpanderIconConverter.cs" />
     <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converters\IsDisabledToOpacityConverter.cs" />
-    <Compile Include="EventArgs\IsOpenedChangedEventArgs.cs" />
+    <Compile Include="EventArguments\IsOpenedChangedEventArgs.cs" />
     <Compile Include="Expander.cs">
       <SubType>Code</SubType>
     </Compile>
