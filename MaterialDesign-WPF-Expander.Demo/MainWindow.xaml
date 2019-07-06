@@ -64,7 +64,8 @@
                 FontSize="14"
                 Foreground="#FFF09D9D"
                 HoverForeground="YellowGreen"
-                IsOpened="True">
+                IsOpened="True"
+                IsOpenedChangedEvent="EasyIntegrationExpander_IsOpenedChangedEvent" ClosedEvent="EasyIntegrationExpander_ClosedEvent" CloseEvent="EasyIntegrationExpander_CloseEvent" OpenedEvent="EasyIntegrationExpander_OpenedEvent" OpenEvent="EasyIntegrationExpander_OpenEvent">
                 <Grid>
                     <TextBlock
                         Width="{Binding ElementName=EasyIntegrationExpander, Path=Width}"

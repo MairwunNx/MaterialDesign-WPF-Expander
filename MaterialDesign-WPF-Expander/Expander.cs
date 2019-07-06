@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using MaterialDesign_WPF_Expander.EventArgs;
 using static System.Windows.Application;
 
 namespace MaterialDesign_WPF_Expander
@@ -41,6 +42,61 @@ namespace MaterialDesign_WPF_Expander
                 new FrameworkPropertyMetadata(TypeofThis)
             );
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public delegate void OpenedDelegate(object sender, System.EventArgs e);
+        /// <summary>
+        /// 
+        /// </summary>
+        public event OpenedDelegate OpenedEvent;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public delegate void OpenDelegate(object sender, System.EventArgs e);
+        /// <summary>
+        /// 
+        /// </summary>
+        public event OpenDelegate OpenEvent;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public delegate void ClosedDelegate(object sender, System.EventArgs e);
+        /// <summary>
+        /// 
+        /// </summary>
+        public event ClosedDelegate ClosedEvent;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public delegate void CloseDelegate(object sender, System.EventArgs e);
+        /// <summary>
+        /// 
+        /// </summary>
+        public event CloseDelegate CloseEvent;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public delegate void IsOpenedChangedDelegate(object sender, IsOpenedChangedEventArgs e);
+        /// <summary>
+        /// 
+        /// </summary>
+        public event IsOpenedChangedDelegate IsOpenedChangedEvent;
 
         /// <summary>
         /// Set or get the content object that was set in the
@@ -151,9 +207,14 @@ namespace MaterialDesign_WPF_Expander
             set
             {
                 Storyboard.SetTargetName(_expanderBorder, _expanderBorder.Name);
+                IsOpenedChangedEvent?.Invoke(
+                    this,
+                    new IsOpenedChangedEventArgs { IsOpened = value }
+                );
 
                 if (value)
                 {
+                    OpenEvent?.Invoke(this, System.EventArgs.Empty);
                     SetValue(IsOpenedProperty, true);
 
                     DoubleAnimation doubleAnimation = new DoubleAnimation
@@ -175,10 +236,16 @@ namespace MaterialDesign_WPF_Expander
                     Storyboard storyboard = new Storyboard();
                     storyboard.Children.Add(doubleAnimation);
                     storyboard.FillBehavior = FillBehavior.Stop;
+                    storyboard.Completed += (s, e) =>
+                    {
+                        OpenedEvent?.Invoke(this, System.EventArgs.Empty);
+                    };
                     storyboard.Begin(_expanderBorder);
                 }
                 else
                 {
+                    CloseEvent?.Invoke(this, System.EventArgs.Empty);
+
                     DoubleAnimation doubleAnimation = new DoubleAnimation
                     {
                         To = _expanderBorder.BorderThickness.Bottom +
@@ -198,6 +265,7 @@ namespace MaterialDesign_WPF_Expander
                     storyboard.Completed += (sender, args) =>
                     {
                         SetValue(IsOpenedProperty, false);
+                        ClosedEvent?.Invoke(this, System.EventArgs.Empty);
                     };
                     storyboard.Begin(_expanderBorder);
                 }
