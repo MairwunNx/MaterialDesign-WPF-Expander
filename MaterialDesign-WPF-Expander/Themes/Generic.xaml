@@ -105,9 +105,7 @@
                                 Grid.ColumnSpan="2"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top"
-                                Content="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}}"
-                                Visibility="{TemplateBinding Property=IsOpened,
-                                                             Converter={StaticResource BoolToVisibilityConverter}}" />
+                                Content="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}}" />
                         </Grid>
                     </Border>
                 </ControlTemplate>

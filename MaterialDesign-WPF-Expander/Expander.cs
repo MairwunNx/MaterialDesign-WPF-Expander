@@ -222,6 +222,7 @@ namespace MaterialDesign_WPF_Expander
             if (value)
             {
                 OpenEvent?.Invoke(this, EventArgs.Empty);
+                _contentPresenter.Visibility = Visibility.Visible;
 
                 DoubleAnimation doubleAnimation = new DoubleAnimation
                 {
@@ -268,6 +269,7 @@ namespace MaterialDesign_WPF_Expander
                 storyboard.Completed += (sender, args) =>
                 {
                     IsOpened = false;
+                    _contentPresenter.Visibility = Visibility.Hidden;
                     ClosedEvent?.Invoke(this, EventArgs.Empty);
                 };
                 storyboard.Begin(_expanderBorder);
@@ -609,6 +611,7 @@ namespace MaterialDesign_WPF_Expander
             Loaded += (s, e) =>
             {
                 InitExpanderHeightByIsOpened();
+                InitExpanderContentByIsOpened();
                 InitExpanderOnClickHandler();
                 ProcessExpanderResize();
             };
@@ -622,6 +625,14 @@ namespace MaterialDesign_WPF_Expander
                     _expanderHeader.ActualHeight +
                     _expanderBorder.Padding.Bottom +
                     _expanderBorder.BorderThickness.Bottom;
+            }
+        }
+
+        private void InitExpanderContentByIsOpened()
+        {
+            if (!IsOpened)
+            {
+                _contentPresenter.Visibility = Visibility.Hidden;
             }
         }
 
