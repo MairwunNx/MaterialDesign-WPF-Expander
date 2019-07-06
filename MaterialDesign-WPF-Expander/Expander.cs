@@ -5,7 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
-using MaterialDesign_WPF_Expander.EventArgs;
+using MaterialDesign_WPF_Expander.EventArguments;
 using static System.Windows.Application;
 
 namespace MaterialDesign_WPF_Expander
@@ -48,7 +48,7 @@ namespace MaterialDesign_WPF_Expander
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public delegate void OpenedDelegate(object sender, System.EventArgs e);
+        public delegate void OpenedDelegate(object sender, EventArgs e);
         /// <summary>
         /// 
         /// </summary>
@@ -59,7 +59,7 @@ namespace MaterialDesign_WPF_Expander
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public delegate void OpenDelegate(object sender, System.EventArgs e);
+        public delegate void OpenDelegate(object sender, EventArgs e);
         /// <summary>
         /// 
         /// </summary>
@@ -70,7 +70,7 @@ namespace MaterialDesign_WPF_Expander
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public delegate void ClosedDelegate(object sender, System.EventArgs e);
+        public delegate void ClosedDelegate(object sender, EventArgs e);
         /// <summary>
         /// 
         /// </summary>
@@ -81,7 +81,7 @@ namespace MaterialDesign_WPF_Expander
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public delegate void CloseDelegate(object sender, System.EventArgs e);
+        public delegate void CloseDelegate(object sender, EventArgs e);
         /// <summary>
         /// 
         /// </summary>
@@ -214,7 +214,7 @@ namespace MaterialDesign_WPF_Expander
 
                 if (value)
                 {
-                    OpenEvent?.Invoke(this, System.EventArgs.Empty);
+                    OpenEvent?.Invoke(this, EventArgs.Empty);
                     SetValue(IsOpenedProperty, true);
 
                     DoubleAnimation doubleAnimation = new DoubleAnimation
@@ -238,13 +238,13 @@ namespace MaterialDesign_WPF_Expander
                     storyboard.FillBehavior = FillBehavior.Stop;
                     storyboard.Completed += (s, e) =>
                     {
-                        OpenedEvent?.Invoke(this, System.EventArgs.Empty);
+                        OpenedEvent?.Invoke(this, EventArgs.Empty);
                     };
                     storyboard.Begin(_expanderBorder);
                 }
                 else
                 {
-                    CloseEvent?.Invoke(this, System.EventArgs.Empty);
+                    CloseEvent?.Invoke(this, EventArgs.Empty);
 
                     DoubleAnimation doubleAnimation = new DoubleAnimation
                     {
@@ -265,7 +265,7 @@ namespace MaterialDesign_WPF_Expander
                     storyboard.Completed += (sender, args) =>
                     {
                         SetValue(IsOpenedProperty, false);
-                        ClosedEvent?.Invoke(this, System.EventArgs.Empty);
+                        ClosedEvent?.Invoke(this, EventArgs.Empty);
                     };
                     storyboard.Begin(_expanderBorder);
                 }

@@ -1,4 +1,4 @@
-﻿namespace MaterialDesign_WPF_Expander.EventArgs
+﻿namespace MaterialDesign_WPF_Expander.EventArguments
 {
     /// <summary>
     /// 
