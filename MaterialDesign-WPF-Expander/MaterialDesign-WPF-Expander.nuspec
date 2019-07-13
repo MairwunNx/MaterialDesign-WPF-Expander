@@ -16,9 +16,6 @@
     <tags>WPF XAML Material-Design Material Design Expander UI UX Custom-Control</tags>
   </metadata>
   <files>
-    <file src="bin\Release\MaterialDesign-WPF-Expander.dll" target="lib\net48" />
-    <file src="bin\Release\MaterialDesign-WPF-Expander.pdb" target="lib\net48" />
-    <file src="bin\Release\MaterialDesign-WPF-Expander.xml" target="lib\net48" />
     <file src="**\*.cs" target="src\net48" />
   </files>
 </package>
