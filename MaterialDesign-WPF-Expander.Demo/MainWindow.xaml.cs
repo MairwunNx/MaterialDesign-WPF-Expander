@@ -8,6 +8,20 @@ namespace MaterialDesign_WPF_Expander.Demo
     {
         public MainWindow() => InitializeComponent();
 
+        private bool _isDarkTheme = true;
+        private readonly ResourceDictionary _dictLight = new ResourceDictionary
+        {
+            Source = new Uri("pack://application:,,,/MaterialDesign-WPF-Expander;component/Themes/LightDictionary.xaml", UriKind.Absolute)
+        };
+        private readonly ResourceDictionary _dictDark = new ResourceDictionary
+        {
+            Source = new Uri("pack://application:,,,/MaterialDesign-WPF-Expander;component/Themes/DarkDictionary.xaml", UriKind.Absolute)
+        };
+        private readonly ResourceDictionary _dictIcon = new ResourceDictionary
+        {
+            Source = new Uri("pack://application:,,,/MaterialDesign-WPF-Expander;component/Resources/Icons/Icons.xaml", UriKind.Absolute)
+        };
+
         private void EasyIntegrationExpander_IsOpenedChangedEvent(object sender, IsOpenedChangedEventArgs e)
         {
             MessageBox.Show($"Opened state changed to: {e.IsOpened}");
@@ -31,6 +45,28 @@ namespace MaterialDesign_WPF_Expander.Demo
         private void EasyIntegrationExpander_OpenEvent(object sender, EventArgs e)
         {
             MessageBox.Show("Opening!");
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (_isDarkTheme)
+            {
+                _isDarkTheme = false;
+                Application.Current.Resources.MergedDictionaries.Remove(_dictDark);
+                Application.Current.Resources.MergedDictionaries.Add(_dictLight);
+
+                //Application.Current.Resources.MergedDictionaries.Remove(_dictIcon);
+                //Application.Current.Resources.MergedDictionaries.Add(_dictIcon);
+            }
+            else
+            {
+                _isDarkTheme = true;
+                Application.Current.Resources.MergedDictionaries.Remove(_dictLight);
+                Application.Current.Resources.MergedDictionaries.Add(_dictDark);
+                
+                //Application.Current.Resources.MergedDictionaries.Remove(_dictIcon);
+                //Application.Current.Resources.MergedDictionaries.Add(_dictIcon);
+            }
         }
     }
 }

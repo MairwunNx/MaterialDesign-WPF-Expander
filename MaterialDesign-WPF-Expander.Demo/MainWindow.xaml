@@ -7,8 +7,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:mdex="clr-namespace:MaterialDesign_WPF_Expander;assembly=MaterialDesign-WPF-Expander"
     Title="MainWindow"
-    Width="886"
-    Height="564.334"
+    Width="872"
+    Height="770"
     mc:Ignorable="d">
     <Grid Background="{DynamicResource Ex-Background-Brush}">
         <Grid.RowDefinitions>
@@ -26,11 +26,21 @@
             TextWrapping="WrapWithOverflow" />
 
         <StackPanel Grid.Row="1">
+            <TextBlock
+                MaxWidth="800"
+                Margin="15,15,0,0"
+                HorizontalAlignment="Left"
+                FontFamily="Segoe UI"
+                FontSize="18"
+                FontWeight="Light"
+                Foreground="{DynamicResource Ex-HeaderForeground-Brush}"
+                Text="Expander with customized border background and border corner radius, also customized content margin and background color, also isOpened false by default."
+                TextWrapping="WrapWithOverflow" />
             <mdex:Expander
                 x:Name="PrivacyExpander"
                 Title="Privacy included at no additional cost"
-                MaxWidth="880"
-                Margin="25,20,0,40"
+                MaxWidth="800"
+                Margin="13,20,12,20"
                 Padding="0,0,10,30"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
@@ -52,20 +62,35 @@
                         TextWrapping="WrapWithOverflow" />
                 </Grid>
             </mdex:Expander>
-
+            <TextBlock
+                MaxWidth="800"
+                Margin="15,15,0,0"
+                HorizontalAlignment="Left"
+                FontFamily="Segoe UI"
+                FontSize="18"
+                FontWeight="Light"
+                Foreground="{DynamicResource Ex-HeaderForeground-Brush}"
+                Text="Expander with customized header foreground and header hover foreground, also added messages on expander events."
+                TextWrapping="WrapWithOverflow" />
             <mdex:Expander
                 x:Name="EasyIntegrationExpander"
                 Title="Easy integration with top website builders"
-                MaxWidth="880"
-                Margin="25,0,0,0"
+                MaxWidth="800"
+                Margin="13,20,12,20"
                 Padding="0,0,18,24"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
+                Background="{DynamicResource Ex-Background-Brush}"
+                BorderBrush="{DynamicResource Ex-BorderFill-Brush}"
+                CloseEvent="EasyIntegrationExpander_CloseEvent"
+                ClosedEvent="EasyIntegrationExpander_ClosedEvent"
                 FontSize="14"
                 Foreground="#FFF09D9D"
                 HoverForeground="YellowGreen"
                 IsOpened="True"
-                IsOpenedChangedEvent="EasyIntegrationExpander_IsOpenedChangedEvent" ClosedEvent="EasyIntegrationExpander_ClosedEvent" CloseEvent="EasyIntegrationExpander_CloseEvent" OpenedEvent="EasyIntegrationExpander_OpenedEvent" OpenEvent="EasyIntegrationExpander_OpenEvent">
+                IsOpenedChangedEvent="EasyIntegrationExpander_IsOpenedChangedEvent"
+                OpenEvent="EasyIntegrationExpander_OpenEvent"
+                OpenedEvent="EasyIntegrationExpander_OpenedEvent">
                 <Grid>
                     <TextBlock
                         Width="{Binding ElementName=EasyIntegrationExpander, Path=Width}"
@@ -77,18 +102,37 @@
                         TextWrapping="WrapWithOverflow" />
                 </Grid>
             </mdex:Expander>
-
+            <TextBlock
+                MaxWidth="800"
+                Margin="15,15,0,0"
+                HorizontalAlignment="Left"
+                FontFamily="Segoe UI"
+                FontSize="18"
+                FontWeight="Light"
+                Foreground="{DynamicResource Ex-HeaderForeground-Brush}"
+                Text="Just default expander without customizations."
+                TextWrapping="WrapWithOverflow" />
             <mdex:Expander
-                MaxWidth="880"
+                MaxWidth="800"
+                Margin="13,20,12,20"
+                HorizontalAlignment="Left"
+                Background="{DynamicResource Ex-Background-Brush}"
+                BorderBrush="{DynamicResource Ex-BorderFill-Brush}"
                 FontSize="14"
+                Foreground="{DynamicResource Ex-HeaderForeground-Brush}"
+                HoverForeground="{DynamicResource Ex-HeaderHoverForeground-Brush}"
                 IsOpened="True">
                 <TextBlock
                     Padding="40,5,5,0"
-                    Foreground="#FFB0B0B0"
+                    Foreground="{DynamicResource Ex-HeaderForeground-Brush}"
                     TextWrapping="WrapWithOverflow">
                     When you purchase or transfer a domain to Google Domains, you can immediately start creating your website with one of our website building providers. Plans vary in cost, and options include secure and reliable hosting, customizable templates, and powerful features like drag and drop creation and mobile site-management.
                 </TextBlock>
             </mdex:Expander>
+            <Button
+                Click="Button_Click"
+                Content="Toggle theme"
+                Style="{StaticResource MaterialDesignFlatAccentButton}" />
         </StackPanel>
     </Grid>
 </Window>
