@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>MaterialDesign-WPF-Expander</id>
+    <version>0.9.0</version>
+    <title>Material Design Expander ui control</title>
+    <authors>MairwunNx</authors>
+    <owners>MairwunNx</owners>
+    <licenseUrl>https://github.com/MairwunNx/MaterialDesign-WPF-Expander/blob/net-framework-48/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/MairwunNx/MaterialDesign-WPF-Expander</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/MairwunNx/MaterialDesign-WPF-Expander/net-framework-48/.github/MEDIA/ExpanderIcon.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Expander ui custom control implementation for WPF with using Material Design.</description>
+    <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
+    <copyright>Copyright 2019 MairwunNx (Pavel Erokhin)</copyright>
+    <tags>WPF XAML Material-Design Material Design Expander UI UX Custom-Control</tags>
+  </metadata>
+</package>
