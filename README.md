@@ -2,16 +2,21 @@
 #### Just expander designed with using material design.
 
 ```
-This is my first custom WPF control library. These are preliminary versions and the library was experimental before the 0.5.0 version. Perhaps there are some problems, if you notice them please report them.
+This is my first custom WPF control library. These are preliminary
+versions and the library was experimental before the 0.5.0 version.
+Perhaps there are some problems, if you notice them please report them.
 ```
 ---
 ```
-The idea of creating this Expander ui element came up with when I visited https://domains.google/#/domains-features, there I saw this element and I just had an idea to try to implement this element in WPF. It turned out not bad, I think.
+The idea of creating this Expander ui element came up with when I
+visited https://domains.google/#/domains-features, there I saw
+this element and I just had an idea to try to implement this element
+in WPF. It turned out not bad, I think.
 ```
 
-#### Get it:
+#### Get it (nuget):
 ```
-sdasdsad
+Install-Package aterialDesign-WPF-Expander
 ```
 
 #### Here are some screenshots of the demo project:
