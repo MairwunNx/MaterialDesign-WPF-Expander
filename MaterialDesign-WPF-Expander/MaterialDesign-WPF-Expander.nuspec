@@ -6,7 +6,7 @@
     <title>Material Design Expander ui control</title>
     <authors>MairwunNx</authors>
     <owners>MairwunNx</owners>
-    <license type="file">License.txt</license>
+    <license type="expression">MIT</license>
     <projectUrl>https://github.com/MairwunNx/MaterialDesign-WPF-Expander</projectUrl>
     <iconUrl>https://raw.githubusercontent.com/MairwunNx/MaterialDesign-WPF-Expander/net-framework-48/.github/MEDIA/ExpanderIcon.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
