@@ -25,7 +25,9 @@ Install-Package aterialDesign-WPF-Expander
 ![](.github/MEDIA/LightThemeDemo.png "Light theme demo screenshot")
 
 ```
-This element also supports basic customization, background color, foreground color, hover foreground color, font styling and in general you can simply override the files with themes.
+This element also supports basic customization, background color,
+foreground color, hover foreground color, font styling and in
+general you can simply override the files with themes.
 ```
 
 #### Quick start:
