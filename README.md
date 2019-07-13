@@ -14,7 +14,7 @@ this element and I just had an idea to try to implement this element
 in WPF. It turned out not bad, I think.
 ```
 
-#### Install package (nuget): `Install-Package aterialDesign-WPF-Expander`
+###### Install package (nuget): `Install-Package aterialDesign-WPF-Expander`
 
 #### Here are some screenshots of the demo project:
 
