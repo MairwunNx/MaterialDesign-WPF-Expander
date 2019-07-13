@@ -7,6 +7,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesign-WPF-Expander;component/Resources/Icons/Icons.xaml" />
+                <!--  For using by default light theme just replace DarkDictionary.xaml on LightDictionary.xaml  -->
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesign-WPF-Expander;component/Themes/DarkDictionary.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Dark.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
