@@ -48,19 +48,24 @@ general you can simply override the files with themes.
 ##### MainWindow.xaml:
 
 ```xml
-<mdex:Expander
-    Title="Lorem ipsum dolor sit amet"
-    Background="{DynamicResource Ex-Background-Brush}"
-    BorderBrush="{DynamicResource Ex-BorderFill-Brush}"
-    Foreground="{DynamicResource Ex-HeaderForeground-Brush}"
-    HoverForeground="{DynamicResource Ex-HeaderHoverForeground-Brush}"
-    IsOpened="True">
-        <TextBlock
-            Padding="40,5,5,0"
-            FontSize="14"
-            Foreground="{DynamicResource Ex-HeaderForeground-Brush}"
-            TextWrapping="WrapWithOverflow">
-            Some text for expander
-        </TextBlock>
-</mdex:Expander>
+<Window . . .
+        xmlns:mdex="clr-namespace:MaterialDesign_WPF_Expander;assembly=MaterialDesign-WPF-Expander">
+        <Grid>
+            <mdex:Expander
+                Title="Lorem ipsum dolor sit amet"
+                Background="{DynamicResource Ex-Background-Brush}"
+                BorderBrush="{DynamicResource Ex-BorderFill-Brush}"
+                Foreground="{DynamicResource Ex-HeaderForeground-Brush}"
+                HoverForeground="{DynamicResource Ex-HeaderHoverForeground-Brush}"
+                IsOpened="True">
+                    <TextBlock
+                        Padding="40,5,5,0"
+                        FontSize="14"
+                        Foreground="{DynamicResource Ex-HeaderForeground-Brush}"
+                        TextWrapping="WrapWithOverflow">
+                        Some text for expander
+                    </TextBlock>
+            </mdex:Expander>
+        </Grid>
+</Window>
 ```
